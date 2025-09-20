@@ -14,12 +14,12 @@ $role = $_SESSION['role'] ?? '';
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="../admin/member_approval.php" style="font-size: .8rem;">
-                        <i class="fa fa-user-plus me-2 text-success"></i> Member Approval
+                    <a class="nav-link text-dark fw-bold" href="../admin/approval.php" style="font-size: .8rem;">
+                        <i class="fa fa-user-plus me-2 text-success"></i> Approval
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="../admin/settings.php" style="font-size: .8rem;">
+                    <a class="nav-link text-dark fw-bold" href="../admin/setup.php" style="font-size: .8rem;">
                         <i class="fa fa-cogs me-2 text-warning"></i> Setup
                     </a>
                 </li>

@@ -1,21 +1,18 @@
 <?php
-include_once '../includes/head.php';
-include_once '../config/config.php';
+session_start();
 
-// Fetch banners
+include_once __DIR__ . '/../includes/open.php';
+
 $stmt = $pdo->query("SELECT * FROM banner ORDER BY id DESC");
 $banners = $stmt->fetchAll();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<?php include '../includes/head.php'; ?>
-<body>
-<?php include '../includes/header.php'; ?>
-<div class="container-fluid py-5">
-    <div class="row">
-        <?php include '../includes/side_bar.php'; ?>
-        <main class="col-12 col-md-10 col-lg-10 px-md-4">
-            <div class="container py-5">
+
+<!-- Hero Start -->
+<div class="container-fluid pb-5 hero-header bg-light">
+  <div class="row">
+      <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
+    <main class="col-12 col-md-9 col-lg-9 px-md-4">
+            <div class="container">
                 <div class="card shadow-lg rounded-3 border-0">
                     <div class="card-body p-4">
                         <h3 class="mb-3 text-primary fw-bold">Banner Management</h3>
@@ -137,10 +134,13 @@ $banners = $stmt->fetchAll();
                 </div>
             </div>
         </main>
-    </div>
+  </div>
+  
 </div>
-<?php include '../includes/footer.php'; ?>
-<?php include '../includes/js.php'; ?>
+<!-- Hero End -->
+
+<?php include_once __DIR__ . '/../includes/end.php'; ?>
+
 <script>
 function previewBannerImage(event) {
   var img = document.getElementById('bannerImagePreview');
@@ -177,5 +177,3 @@ function editBanner(id, nameBn, nameEn, imgSrc) {
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <?php include '../includes/toast.php'; ?>
-</body>
-</html>

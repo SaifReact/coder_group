@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'Admin') {
 <div class="container-fluid pb-5 hero-header bg-light">
   <div class="row">
       <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
-    <main class="col-12 col-md-910 col-lg-9 col-xl-9 px-md-4">
+    <main class="col-12 col-md-9 col-lg-9 col-xl-9 px-md-4">
             <div>
                 <h2 class="mb-4">Admin Dashboard</h2>  
                 <hr>

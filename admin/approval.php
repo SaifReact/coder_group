@@ -1,10 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'Admin') {
-    header('Location: ../login.php');
-    exit;
-}
-include_once '../config/config.php';
+
+include_once __DIR__ . '/../includes/open.php';
+
+include_once __DIR__ . '/../config/config.php';
 
 // Handle status update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'], $_POST['status'])) {
@@ -17,16 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'], $_POST['st
 // Fetch all users
 $stmt = $pdo->query("SELECT a.id, a.member_id, a.status, b.member_code, b.name_en, b.name_bn, b.mobile FROM user_login a, members_info b WHERE b.id = a.member_id AND a.role != 'Admin' ORDER BY a.id DESC");
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?><!DOCTYPE html>
-<html lang="en">
-<?php include '../includes/head.php'; ?>
-<body>
-<?php include '../includes/header.php'; ?>
-<div class="container-fluid py-5">
-    <div class="row">
-        <?php include '../includes/side_bar.php'; ?>
-        <main class="col-12 col-md-10 col-lg-10 px-md-4">
-            <div class="container py-5">
+?>
+
+<!-- Hero Start -->
+<div class="container-fluid pb-5 hero-header bg-light">
+  <div class="row">
+      <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
+    <main class="col-12 col-md-9 col-lg-9 px-md-4">
+            <div class="container">
                 <div class="card shadow-lg rounded-3 border-0">
                     <div class="card-body p-4">
                         <h3 class="mb-3 text-primary fw-bold">Member Register & Status</h3>
@@ -79,10 +76,13 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php include 'view_member.php'; ?>
             </div>
         </main>
-    </div>
+  </div>
+  
 </div>
-<?php include '../includes/footer.php'; ?>
-<?php include '../includes/js.php'; ?>
+<!-- Hero End -->
+
+<?php include_once __DIR__ . '/../includes/end.php'; ?>
+
 <script>
 // Handle view icon click
 document.addEventListener('DOMContentLoaded', function() {
@@ -102,5 +102,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<?php include '../includes/toast.php'; ?>
