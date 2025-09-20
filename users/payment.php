@@ -4,7 +4,7 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: ../login.php');
     exit;
 }
-include_once '../config/config.php';
+include_once __DIR__ . '/../config/config.php';
 $member_id = $_SESSION['member_id'];
 $no_share = 1;
 $admission_paid = false;
@@ -14,17 +14,16 @@ if ($row = $stmt->fetch()) {
     $no_share = (float)$row['no_share'];
     $admission_paid = !is_null($row['admission_fee']);
 }
+
+include_once __DIR__ . '/../includes/open.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<?php include '../includes/head.php'; ?>
-<body>
-<?php include '../includes/header.php'; ?>
-<div class="container-fluid py-5">
+
+<!-- Hero Start -->
+<div class="container-fluid pb-5 hero-header bg-light">
   <div class="row">
-    <?php include '../includes/side_bar.php'; ?>
-    <main class="col-12 col-md-10 col-lg-10 px-md-4">
-      <div class="container py-5">
+      <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
+    <main class="col-12 col-md-9 col-lg-9 px-md-4">
+      <div class="container">
         <div class="card shadow-lg rounded-3 border-0">
           <div class="card-body p-4">
             <h3 class="mb-3 text-primary fw-bold">Make a Payment <span class="text-secondary">(পেমেন্ট করুন)</span></h3>
@@ -86,10 +85,12 @@ if ($row = $stmt->fetch()) {
       </div>
     </main>
   </div>
+  
 </div>
-<?php include '../includes/footer.php'; ?>
-<?php include '../includes/js.php'; ?>
-<?php include '../includes/toast.php'; ?>
+<!-- Hero End -->
+
+<?php include_once __DIR__ . '/../includes/end.php'; ?>
+      
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var paymentType = document.getElementById('payment_type');
@@ -137,5 +138,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<?php include '../includes/toast.php'; ?>

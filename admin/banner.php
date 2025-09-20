@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-include_once __DIR__ . '/../includes/open.php';
-
+include_once __DIR__ . '/../config/config.php';
 $stmt = $pdo->query("SELECT * FROM banner ORDER BY id DESC");
 $banners = $stmt->fetchAll();
+
+include_once __DIR__ . '/../includes/open.php';
 ?>
 
 <!-- Hero Start -->

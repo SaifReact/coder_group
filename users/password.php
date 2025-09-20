@@ -1,22 +1,15 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../login.php');
-    exit;
-}
+
+include_once __DIR__ . '/../includes/open.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-   <?php include '../includes/head.php'; ?>
-   <body>
-      <?php include '../includes/header.php'; ?>
-      <div class="container-fluid py-5">
-      <div class="row">
-         <!-- Sidebar (col-3) -->
-         <?php include '../includes/side_bar.php'; ?>
-         <!-- Main Content (col-9) -->
-         <main class="col-12 col-md-10 col-lg-10 px-md-4">
-            <div class="container py-5">
+
+<!-- Hero Start -->
+<div class="container-fluid pb-5 hero-header bg-light">
+  <div class="row">
+      <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
+    <main class="col-12 col-md-9 col-lg-9 px-md-4">
+            <div class="container">
                <div class="card shadow-lg rounded-3 border-0">
                   <div class="card-body p-4">
                      <h3 class="mb-3 text-primary fw-bold">
@@ -71,9 +64,13 @@ if (!isset($_SESSION['user_id'])) {
                   </div>
                </div>
          </main>
-         </div>
-      </div>
-      <!-- Toast container -->
+  </div>
+  
+</div>
+<!-- Hero End -->
+
+<?php include_once __DIR__ . '/../includes/end.php'; ?>
+
 <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; min-width: 300px;">
   <div id="toastMsg" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
@@ -121,9 +118,5 @@ document.getElementById('resetForm').addEventListener('submit', async function(e
     }
 });
 </script>
-
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <?php include '../includes/footer.php'; ?>
-        <?php include '../includes/password.php'; ?>
-   </body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<?php include '../includes/toast.php'; ?>

@@ -1,13 +1,10 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'user') {
-    header('Location: ../login.php');
-    exit;
-}
-
-include_once __DIR__ . '/../config/config.php';
-
- $member_id = $_SESSION['member_id'];
+<?php include_once '../includes/open_head.php'; ?>
+                <h3 class="mb-3">Dashboard</h3>  
+                <hr>
+                                <?php
+                                // DB config
+                                include_once '../config/config.php';
+                                $member_id = $_SESSION['member_id'];
                                 $user_id = $_SESSION['user_id'];
                 $member = null;
                 $nominees = [];
@@ -58,30 +55,18 @@ include_once __DIR__ . '/../config/config.php';
                     $total_amount = $result1['total_amount'] ?? 0;   // Sum of all payment amounts
                     
                 }
-?>
-
-<?php include_once __DIR__ . '/../includes/open.php'; ?>
-
-<!-- Hero Start -->
-<div class="container-fluid pb-5 hero-header bg-light">
-  <div class="row">
-      <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
-    <main class="col-12 col-md-9 col-lg-9 col-xl-9 px-md-4">
-            <div>
-                <h2 class="mb-4">Dashboard</h2>  
-                <hr>
-                
+                 ?>
                 <div class="row g-4 mb-4">
                   <div class="col-md-4">
-                    <div class="card shadow-sm border-0 text-center" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#approvedModal">
-                     <div class="card-body">
+                    <div class="card shadow-sm border-0 text-center" >
+                      <div class="card-body">
                         <h5 class="text-success fw-bold">No of Share</h5>
                         <div class="display-6 fw-bold text-success"><?php echo htmlspecialchars($no_share); ?></div>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <div class="card shadow-sm border-0 text-center" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#pendingModal">
+                    <div class="card shadow-sm border-0 text-center" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#admissionModal">
                       <div class="card-body">
                         <h5 class="text-warning fw-bold">Admission Fee</h5>
                         <div class="display-6 fw-bold text-warning"><?php echo htmlspecialchars($admission_fee); ?></div>
@@ -89,16 +74,16 @@ include_once __DIR__ . '/../config/config.php';
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <div class="card shadow-sm border-0 text-center" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#rejectedModal">
+                    <div class="card shadow-sm border-0 text-center" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#totalDepositModal">
                       <div class="card-body">
                         <h5 class="text-danger fw-bold">Total Deposit</h5>
                         <div class="display-6 fw-bold text-danger"><?php echo htmlspecialchars($total_amount); ?></div>
                       </div>
                     </div>
-                  </div>  
+                  </div>
                 </div>
-                <div class="container">
-  <div class="row">
+<div class="container">
+  <div class="row g-4">
     <!-- Member Info -->
     <div class="col-md-8">
       <div class="card h-100">
@@ -200,12 +185,9 @@ include_once __DIR__ . '/../config/config.php';
     </div>
   </div>
 </div>
-                
-                <!-- Add your main dashboard content here -->
             </div>
         </main>
-  </div>
-  
+    </div>
 </div>
 
 <!-- Edit Member Modal -->
@@ -301,9 +283,8 @@ include_once __DIR__ . '/../config/config.php';
         </div>
     </div>
 </div>
-<!-- Hero End -->
 
-<?php include_once __DIR__ . '/../includes/end.php'; ?>
+<?php include '../includes/footer.php'; ?>
 
 <style>
 .zoomable-img, .doc-thumb {
@@ -400,3 +381,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+</body>
+</html>

@@ -40,12 +40,12 @@ $role = $_SESSION['role'] ?? '';
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="documents_form.php" style="font-size: .8rem;">
+                    <a class="nav-link text-dark fw-bold" href="documents.php" style="font-size: .8rem;">
                         <i class="fa fa-file-upload me-2 text-success"></i> Documents Upload
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="password_form.php" style="font-size: .8rem;">
+                    <a class="nav-link text-dark fw-bold" href="password.php" style="font-size: .8rem;">
                         <i class="fa fa-key me-2 text-warning"></i> Password Change
                     </a>
                 </li>
