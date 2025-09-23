@@ -3,15 +3,22 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Include the config file
 include_once __DIR__ . '/../config/config.php';
 
-// Access specific data from the session
-$siteName = isset($_SESSION['setup']['site_name_bn']) ? $_SESSION['setup']['site_name_bn'] : 'কোডার পেশাজীবী সমবায় সমিতি লিঃ';
+// Access specific data from session
+$siteName = $_SESSION['setup']['site_name_bn'] ?? '';
+$reg_no    = $_SESSION['setup']['registration_no'] ?? '';
+$address    = $_SESSION['setup']['address'] ?? '';
+$phone1    = $_SESSION['setup']['phone1'] ?? '';
+$phone2    = $_SESSION['setup']['phone2'] ?? '';
+$phone = $phone1 . ($phone2 ? ', ' . $phone2 : '');
+$email   = $_SESSION['setup']['email'] ?? '';
+
 ?>
+
 <div class="container py-3">
             <div class="row g-5">
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                <div class="col-md-7 col-lg-5 wow fadeIn" data-wow-delay="0.1s">
                     <a href="index.php" class="navbar-brand">
                      <span style="
                 display: inline-block;
@@ -26,15 +33,13 @@ $siteName = isset($_SESSION['setup']['site_name_bn']) ? $_SESSION['setup']['site
                 <span style="vertical-align:middle;"><?= htmlspecialchars($siteName); ?></span>
             </span>
                 </a>
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                        amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                        clita duo justo et tempor</p>
+                    <p class="mb-0"><?= htmlspecialchars($reg_no); ?></p>
                 </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-                    <h5 class="text-white mb-4">Get In Touch</h5>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                    <h5 class="text-white mb-4">Get In Touch (যোগাযোগ করুন)</h5>
+                    <p><i class="fa fa-map-marker-alt me-3"></i><?= htmlspecialchars($address); ?></p>
+                    <p><i class="fa fa-phone-alt me-3"></i><?= htmlspecialchars($phone); ?></p>
+                    <p><i class="fa fa-envelope me-3"></i><?= htmlspecialchars($email); ?></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
                                 class="fab fa-twitter"></i></a>
@@ -49,20 +54,12 @@ $siteName = isset($_SESSION['setup']['site_name_bn']) ? $_SESSION['setup']['site
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
-                    <h5 class="text-white mb-4">Popular Link</h5>
-                    <a class="btn btn-link" href="#!">About Us</a>
-                    <a class="btn btn-link" href="#!">Contact Us</a>
-                    <a class="btn btn-link" href="#!">Privacy Policy</a>
-                    <a class="btn btn-link" href="#!">Terms & Condition</a>
-                    <a class="btn btn-link" href="#!">Career</a>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
-                    <h5 class="text-white mb-4">Our Services</h5>
-                    <a class="btn btn-link" href="#!">Interior Design</a>
-                    <a class="btn btn-link" href="#!">Project Planning</a>
-                    <a class="btn btn-link" href="#!">Renovation</a>
-                    <a class="btn btn-link" href="#!">Implement</a>
-                    <a class="btn btn-link" href="#!">Landscape Design</a>
+                    <h5 class="text-white mb-4">Quick Link (জনপ্রিয় লিঙ্ক)</h5>
+                    <a class="btn btn-link" href="index.php">Home (প্রচ্ছদ)</a>
+                    <a class="btn btn-link" href="form.php">Registration (নিবন্ধন)</a>
+                    <a class="btn btn-link" href="login.php">Login (লগইন)</a>
+                    <a class="btn btn-link" href="contact.php">Contact (যোগাযোগ)</a>
+                    <a class="btn btn-link" href="#!">Jobs (চাকরি)</a>
                 </div>
             </div>
         </div>
