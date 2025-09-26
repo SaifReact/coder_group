@@ -1,6 +1,14 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Ensure the correct path to config.php
 include_once __DIR__ . '/../config/config.php';
+
+$smart_bn    = $_SESSION['setup']['smart_bn'] ?? '';
+$smart_en    = $_SESSION['setup']['smart_en'] ?? '';
+
+$smart = $smart_bn . ($smart_en ? "\n" . $smart_en : '');
 
 // Fetch banners from the database
 try {
@@ -58,5 +66,11 @@ try {
             </div>
             <h5 class="lh-base mb-0">Friendly → সৌহার্দ্যপূর্ণ</h5>
         </div>
+    </div>
+</div>
+<div class="row g-5 mt-1">
+    <div class="col-12 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+        <h6 class="d-inline-block border border-2 border-white py-2 px-3 mb-0 animated slideInRight justify-content-center text-center" style="white-space: pre-line;">
+            <?= nl2br(htmlspecialchars($smart)); ?></h6>
     </div>
 </div>

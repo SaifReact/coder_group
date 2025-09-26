@@ -1,13 +1,16 @@
 <?php
 session_start();
-
-include_once __DIR__ . '/../includes/open.php';
+if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'Admin') {
+    header('Location: ../login.php');
+    exit;
+}
 
 include_once __DIR__ . '/../config/config.php';
 
 $stmt = $pdo->query("SELECT * FROM setup LIMIT 1");
 $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
+<?php include_once __DIR__ . '/../includes/open.php'; ?>
 
 <!-- Hero Start -->
 <div class="container-fluid pb-5 hero-header bg-light">
@@ -67,35 +70,35 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="col-12 col-md-6 mb-3">
                                    <div class="row">
-    <div class="col-md-9">
-        <label for="profile_image" class="form-label">
-            Site Logo <span class="text-secondary small">(ছবি নির্বাচন করুন)</span>
-        </label>
-        <input class="form-control" type="file" id="profile_image" name="profile_image" accept="image/*" onchange="previewImage(event)">
-        <span id="profileImageError" class="text-danger small"></span>
-    </div>
-    <div class="col-md-3 d-flex justify-content-center align-items-center position-relative" style="min-height: 90px;">
-        <?php if (!empty($settings['logo'])): ?>
-            <img id="imagePreview" 
-                 src="/coder_group/assets/img/<?= htmlspecialchars($settings['logo']) ?>" 
-                 alt="Logo Preview" 
-                 style="max-width: 200px; max-height: 75px; border-radius: 5px; box-shadow: 0 2px 8px #0002; background: #fff; padding: 6px;" />
-            <button type="button" id="profileImgClear" 
-                    class="btn-close" 
-                    style="position:absolute; top:8px; right:8px; background:#d33; opacity:0.8; width:18px; height:18px; padding:2px; border-radius:50%; z-index:2;" 
-                    tabindex="-1" title="Clear Image"></button>
-        <?php else: ?>
-            <img id="imagePreview" 
-                 src="#" 
-                 alt="Image Preview" 
-                 style="display:none; max-width: 200px; max-height: 75px; border-radius: 5px; box-shadow: 0 2px 8px #0002; background: #fff; padding: 6px;" />
-            <button type="button" id="profileImgClear" 
-                    class="btn-close" 
-                    style="display:none; position:absolute; top:8px; right:8px; background:#d33; opacity:0.8; width:18px; height:18px; padding:2px; border-radius:50%; z-index:2;" 
-                    tabindex="-1" title="Clear Image"></button>
-        <?php endif; ?>
-    </div>
-</div>
+                                <div class="col-md-9">
+                                    <label for="profile_image" class="form-label">
+                                        Site Logo <span class="text-secondary small">(ছবি নির্বাচন করুন)</span>
+                                    </label>
+                                    <input class="form-control" type="file" id="profile_image" name="profile_image" accept="image/*" onchange="previewImage(event)">
+                                    <span id="profileImageError" class="text-danger small"></span>
+                                </div>
+                                <div class="col-md-3 d-flex justify-content-center align-items-center position-relative" style="min-height: 90px;">
+                                    <?php if (!empty($settings['logo'])): ?>
+                                        <img id="imagePreview" 
+                                            src="/coder_group/assets/img/<?= htmlspecialchars($settings['logo']) ?>" 
+                                            alt="Logo Preview" 
+                                            style="max-width: 200px; max-height: 75px; border-radius: 5px; box-shadow: 0 2px 8px #0002; background: #fff; padding: 6px;" />
+                                        <button type="button" id="profileImgClear" 
+                                                class="btn-close" 
+                                                style="position:absolute; top:8px; right:8px; background:#d33; opacity:0.8; width:18px; height:18px; padding:2px; border-radius:50%; z-index:2;" 
+                                                tabindex="-1" title="Clear Image"></button>
+                                    <?php else: ?>
+                                        <img id="imagePreview" 
+                                            src="#" 
+                                            alt="Image Preview" 
+                                            style="display:none; max-width: 200px; max-height: 75px; border-radius: 5px; box-shadow: 0 2px 8px #0002; background: #fff; padding: 6px;" />
+                                        <button type="button" id="profileImgClear" 
+                                                class="btn-close" 
+                                                style="display:none; position:absolute; top:8px; right:8px; background:#d33; opacity:0.8; width:18px; height:18px; padding:2px; border-radius:50%; z-index:2;" 
+                                                tabindex="-1" title="Clear Image"></button>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
 
                                 </div>
                                 <div class="col-12 col-md-6 mb-3">
