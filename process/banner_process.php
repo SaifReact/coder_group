@@ -1,6 +1,11 @@
 <?php
 session_start();
-include_once '../config/config.php';
+if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'Admin') {
+    header('Location: ../login.php');
+    exit;
+}
+
+include_once __DIR__ . '/../config/config.php';
 
 // Banner folder
 $banner_folder = '../banner/';

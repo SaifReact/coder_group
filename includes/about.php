@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 include_once __DIR__ . '/../config/config.php';
 
 $about_bn    = $_SESSION['setup']['about_text'] ?? '';
-$about_en    = $_SESSION['setup']['rules_regulation'] ?? '';
+$about_en    = $_SESSION['setup']['about_text_en'] ?? '';
 ?>
 
 <div class="row g-5">

@@ -5,7 +5,34 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'Admin') {
     exit;
 }
 
-include_once '../config/config.php';
+include_once __DIR__ . '/../config/config.php';
+
+// Banner folder
+$logo_folder = dirname(__DIR__) . '/assets/img/';
+if (!is_dir($logo_folder)) {
+    mkdir($logo_folder, 0777, true);
+}
+
+// Helper to upload/overwrite image
+function uploadLogoImage($file) {
+    global $logo_folder;
+    if ($file['error'] === UPLOAD_ERR_OK) {
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
+            return null;
+        }
+
+        // Always save with same filename (overwrite if exists)
+        $filename = 'logo.' . $ext;
+        $target = $logo_folder . $filename;
+
+        if (move_uploaded_file($file['tmp_name'], $target)) {
+            return $filename; // Only filename (e.g. logo.png)
+        }
+    }
+    return null;
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $site_name_bn     = $_POST['site_name_bn'] ?? '';
@@ -16,16 +43,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone1           = $_POST['phone1'] ?? '';
     $phone2           = $_POST['phone2'] ?? '';
 
-    // ✅ Strip all HTML tags from text fields
-    $about_text       = isset($_POST['about_text']) ? strip_tags($_POST['about_text']) : '';
-    $rules_regulation = isset($_POST['rules_regulation']) ? strip_tags($_POST['rules_regulation']) : '';
+    // ✅ Strip HTML tags
+    $about_text    = isset($_POST['about_text']) ? strip_tags($_POST['about_text']) : '';
+    $about_text_en = isset($_POST['about_text_en']) ? strip_tags($_POST['about_text_en']) : '';
+    $slogan_bn     = isset($_POST['slogan_bn']) ? strip_tags($_POST['slogan_bn']) : '';
+    $slogan_en     = isset($_POST['slogan_en']) ? strip_tags($_POST['slogan_en']) : '';
+    $smart_bn      = isset($_POST['smart_bn']) ? strip_tags($_POST['smart_bn']) : '';
+    $smart_en      = isset($_POST['smart_en']) ? strip_tags($_POST['smart_en']) : '';
 
-    // Update settings (assuming only one row, id=1)
+    $logo = uploadLogoImage($_FILES['profile_image']);
+
+    // ✅ Update DB
     $stmt = $pdo->prepare("
         UPDATE setup 
-        SET site_name_bn=?, site_name_en=?, registration_no=?, address=?, email=?, phone1=?, phone2=?, about_text=?, rules_regulation=? 
+        SET site_name_bn=?, site_name_en=?, registration_no=?, address=?, email=?, phone1=?, phone2=?, 
+            about_text=?, about_text_en=?, slogan_bn=?, slogan_en=?, smart_bn=?, smart_en=?, logo=?
         WHERE id=1
     ");
+
     $stmt->execute([
         $site_name_bn,
         $site_name_en,
@@ -35,10 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $phone1,
         $phone2,
         $about_text,
-        $rules_regulation
+        $about_text_en,
+        $slogan_bn,
+        $slogan_en,
+        $smart_bn,
+        $smart_en,
+        $logo
     ]);
 
-    $_SESSION['success_msg'] = "Settings updated successfully..! (সফলভাবে হালনাগাদ করা হলো..!)";
+    $_SESSION['success_msg'] = "✅ Setup updated successfully..! (সফলভাবে হালনাগাদ করা হলো..!)";
     header('Location: ../admin/setup.php');
     exit;
 } else {
