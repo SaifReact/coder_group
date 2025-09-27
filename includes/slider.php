@@ -68,9 +68,3 @@ try {
         </div>
     </div>
 </div>
-<div class="row g-5 mt-1">
-    <div class="col-12 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-        <h6 class="d-inline-block border border-2 border-white py-2 px-3 mb-0 animated slideInRight justify-content-center text-center" style="white-space: pre-line;">
-            <?= nl2br(htmlspecialchars($smart)); ?></h6>
-    </div>
-</div>

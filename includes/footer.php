@@ -13,6 +13,12 @@ $phone1    = $_SESSION['setup']['phone1'] ?? '';
 $phone2    = $_SESSION['setup']['phone2'] ?? '';
 $phone = $phone1 . ($phone2 ? ', ' . $phone2 : '');
 $email   = $_SESSION['setup']['email'] ?? '';
+$slogan_bn = $_SESSION['setup']['slogan_bn'] ?? '';
+$slogan_en = $_SESSION['setup']['slogan_en'] ?? ''; 
+$slogan = $slogan_bn . ($slogan_en ? ' ( ' . $slogan_en . ' )' : '');
+$smart_bn = $_SESSION['setup']['smart_bn'] ?? '';
+$smart_en = $_SESSION['setup']['smart_en'] ?? '';   
+$smart = $smart_bn . ($smart_en ? ' ( ' . $smart_en . ' )' : '');
 
 ?>
 
@@ -33,7 +39,9 @@ $email   = $_SESSION['setup']['email'] ?? '';
                 <span style="vertical-align:middle;"><?= htmlspecialchars($siteName); ?></span>
             </span>
                 </a>
-                    <p class="mb-0"><?= htmlspecialchars($reg_no); ?></p>
+                    <p class="mb-0">ফাইল নং - <?= htmlspecialchars($reg_no); ?></p>
+                    <p class="mb-0"><?= htmlspecialchars($slogan); ?></p>
+                    <p class="mb-0"><?= htmlspecialchars($smart); ?></p>
                 </div>
                 <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                     <h5 class="text-white mb-4">Get In Touch (যোগাযোগ করুন)</h5>
