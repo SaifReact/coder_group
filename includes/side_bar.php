@@ -19,6 +19,16 @@ $role = $_SESSION['role'] ?? '';
                     </a>
                 </li>
                 <li class="nav-item mb-3">
+                    <a class="nav-link text-dark fw-bold" href="../admin/committee.php" style="font-size: .8rem;">
+                        <i class="fa fa-user-plus me-2 text-success"></i> Committee
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a class="nav-link text-dark fw-bold" href="../admin/service.php" style="font-size: .8rem;">
+                        <i class="fa fa-user-plus me-2 text-success"></i> Service
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
                     <a class="nav-link text-dark fw-bold" href="../admin/setup.php" style="font-size: .8rem;">
                         <i class="fa fa-cogs me-2 text-warning"></i> Setup
                     </a>

@@ -70,7 +70,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="col-12 col-md-6 mb-3">
                                    <div class="row">
-                                <div class="col-md-9">
+                                    <div class="col-md-9">
                                     <label for="profile_image" class="form-label">
                                         Site Logo <span class="text-secondary small">(ছবি নির্বাচন করুন)</span>
                                     </label>
@@ -98,7 +98,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                                 tabindex="-1" title="Clear Image"></button>
                                     <?php endif; ?>
                                 </div>
-                            </div>
+                             </div>
 
                                 </div>
                                 <div class="col-12 col-md-6 mb-3">
