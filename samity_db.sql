@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2025 at 08:51 PM
+-- Generation Time: Sep 28, 2025 at 08:03 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -41,9 +41,26 @@ CREATE TABLE `banner` (
 --
 
 INSERT INTO `banner` (`id`, `banner_name_bn`, `banner_name_en`, `banner_image`, `created_at`) VALUES
-(3, 'khgdgfdfyi8gk', 'hvdrghbhgdf', 'banner_1757953180_8834.jpg', '2025-09-06 02:07:54'),
+(3, 'khgdgfdfyi8gk', 'hvdrghbhgdf', 'banner_1758389564_1266.png', '2025-09-06 02:07:54'),
 (4, 'htrgefsdgnfdf', 'gfgsdgndsfdfs', 'banner_1757953172_3635.jpg', '2025-09-06 03:25:04'),
-(6, 'jghgfhgfhg', 'vghfhgfhg', 'banner_1757953162_8655.jpg', '2025-09-06 03:30:27');
+(6, 'jghgfhgfhg', 'vghfhgfhg', 'banner_1757953162_8655.jpg', '2025-09-06 03:30:27'),
+(7, 'ffgbdfrxfd', 'fgffdgffgdfdf', 'banner_1758989170_3478.jpg', '2025-09-20 17:33:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `committee_member`
+--
+
+CREATE TABLE `committee_member` (
+  `id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `member_code` varchar(50) NOT NULL,
+  `position` varchar(50) NOT NULL,
+  `fb` varchar(100) NOT NULL,
+  `li` varchar(100) NOT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -64,11 +81,11 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `company_name_bn`, `company_name_en`, `company_image`, `created_at`) VALUES
-(1, 'কোডার মার্ট ', 'Coder Mart', '1757955251_project-6.jpg', '2025-09-15 14:13:27'),
-(2, 'কোডার স্টেশন', 'Coder Station', '1757955243_project-4.jpg', '2025-09-15 14:22:47'),
+(1, 'কোডার মার্ট ও এগ্রো', 'Coder Mart & Agro', '1758649693_logo.png', '2025-09-15 14:13:27'),
+(2, 'কোডার আইটি ও ইনস্টিটিউট', 'Coder IT & Institute', '1757955243_project-4.jpg', '2025-09-15 14:22:47'),
 (3, 'কোডার ফিন্যান্স ', 'Coder Finance', '1757955233_project-5.jpg', '2025-09-15 14:23:33'),
-(4, 'কোডার হজ & ওমরাহ', 'Coder Hajj & Umrah', '1757955217_project-3.jpg', '2025-09-15 14:24:31'),
-(5, 'কোডার বিল্ডার্স ', 'Coder Builders', '1757955209_project-2.jpg', '2025-09-15 14:25:54'),
+(4, 'কোডার হজ ও ওমরাহ', 'Coder Hajj & Umrah', '1757955217_project-3.jpg', '2025-09-15 14:24:31'),
+(5, 'কোডার হোমস ও বিল্ডার্স', 'Coder Homes & Builders', '1758649676_codeHome_logo.png', '2025-09-15 14:25:54'),
 (6, 'কোডার ফাউন্ডেশন', 'Coder Foundation', '1757955200_project-1.jpg', '2025-09-15 14:27:27');
 
 -- --------------------------------------------------------
@@ -104,7 +121,8 @@ CREATE TABLE `members_info` (
 INSERT INTO `members_info` (`id`, `member_code`, `name_bn`, `name_en`, `father_name`, `mother_name`, `nid`, `dob`, `religion`, `marital_status`, `spouse_name`, `mobile`, `gender`, `education`, `agreed_rules`, `profile_image`, `created_at`) VALUES
 (11, 'CPSS-00001', 'Md. Saifur Rahman', 'MD SAIFUR RAHMAN', 'MD. FAZLUL HOQUE MOLLAH', 'সেলিনা আক্তার', '2313515465465132654', '2000-01-15', 'ইসলাম', 'Single', '', '01540505646', 'Male', 'স্নাতক/সমমান', 1, 'user_images/member_CPSS-00001/profile_image_1755283690_689f80ead68f6.jpg', '2025-08-15 18:48:10'),
 (18, 'CPSS-00012', 'MD. HASIBUZZAMAN', 'MD HASIBUZZAMAN', 'মোঃ ফজলুল হক মোল্লা', 'সেলিনা আক্তার', '1325116513156154614', '2000-01-01', 'ইসলাম', 'Single', '', '01540505646', 'Male', 'স্নাতক/সমমান', 1, 'user_images/member_CPSS-00012/profile_image_1755360508_68a0acfc03c4a.jpg', '2025-08-16 16:08:28'),
-(19, 'CPSS-00019', 'banner_image', 'BANNER', 'dfdfsfdsdffd', 'banner_image', '2443343434324324343', '1995-09-05', 'ইসলাম', 'Single', '', '01829041699', 'Male', 'স্নাতক/সমমান', 1, 'user_images/member_CPSS-00019/profile_image_1757125258_68bb9a8aac62a.jpg', '2025-09-06 02:20:58');
+(19, 'CPSS-00019', 'banner_image', 'BANNER', 'dfdfsfdsdffd', 'banner_image', '2443343434324324343', '1995-09-05', 'ইসলাম', 'Single', '', '01829041699', 'Male', 'স্নাতক/সমমান', 1, 'user_images/member_CPSS-00019/profile_image_1757125258_68bb9a8aac62a.jpg', '2025-09-06 02:20:58'),
+(20, 'CPSS-00020', 'Dalim', 'FGDFDGFFG', 'ghjjhjh', 'jhjgjg', '3434343234354343243', '2000-09-11', 'ইসলাম', 'Single', '', '01829041699', 'Male', 'স্নাতক/সমমান', 1, 'user_images/member_CPSS-00020/profile_image_1758389895_68cee6876d017.jpg', '2025-09-20 17:38:15');
 
 -- --------------------------------------------------------
 
@@ -162,7 +180,8 @@ INSERT INTO `member_nominee` (`id`, `member_id`, `member_code`, `name`, `relatio
 (11, 11, 'CPSS-00001', 'Md. Abrar Faiyaz', 'Son', '21654654546546546', '2025-08-03 00:00:00', 100, 'user_images/member_CPSS-00001/nominee_1_1755283690_689f80eaefa12.jpg', '0000-00-00 00:00:00'),
 (18, 18, 'CPSS-00012', 'Md. Abrar Faiyaz', 'Son', '31565165651615615', '2022-05-18 00:00:00', 100, 'user_images/member_CPSS-00012/nominee_1_1755360508_68a0acfc5be1b.jpg', '0000-00-00 00:00:00'),
 (19, 19, 'CPSS-00019', 'eeeeee', 'son', '43456464565446456', '2025-09-09 00:00:00', 50, 'user_images/member_CPSS-00019/nominee_1_1757125258_68bb9a8ab2e64.png', '0000-00-00 00:00:00'),
-(20, 19, 'CPSS-00019', 'ettrytertj', 'wife', '66767866545686465', '2000-09-02 00:00:00', 50, 'user_images/member_CPSS-00019/nominee_2_1757125258_68bb9a8ab3404.jpg', '0000-00-00 00:00:00');
+(20, 19, 'CPSS-00019', 'ettrytertj', 'wife', '66767866545686465', '2000-09-02 00:00:00', 50, 'user_images/member_CPSS-00019/nominee_2_1757125258_68bb9a8ab3404.jpg', '0000-00-00 00:00:00'),
+(21, 20, 'CPSS-00020', 'dauha', 'son', '32555765454774545', '2025-09-17 00:00:00', 100, 'user_images/member_CPSS-00020/nominee_1_1758389895_68cee68770e07.png', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -187,7 +206,8 @@ CREATE TABLE `member_office` (
 INSERT INTO `member_office` (`id`, `member_id`, `member_code`, `office_name`, `office_address`, `position`, `created_at`) VALUES
 (11, 11, 'CPSS-00001', 'ইরা ইনফোটেক লিঃ', '10/A-3, BARDHAN BARI, WARD#09, DARUS SALAM THANA ROAD, MIRPUR-1', 'Senior Software Engineer', '2025-08-16 00:48:10'),
 (18, 18, 'CPSS-00012', 'ইরা ইনফোটেক লিঃ', '217/1 3rd colony lalkuthi, Mirpur', 'Senior Software Engineer', '2025-08-16 22:08:28'),
-(19, 19, 'CPSS-00019', 'সফল', 'fdgfgdfdfdfd', 'ffdfdfd', '2025-09-05 19:20:58');
+(19, 19, 'CPSS-00019', 'সফল', 'fdgfgdfdfdfd', 'ffdfdfd', '2025-09-05 19:20:58'),
+(20, 20, 'CPSS-00020', 'fghhgfhfgfhg', 'hgfhgfhgfhfhgfhgf', 'hfghffhghfg', '2025-09-20 23:38:15');
 
 -- --------------------------------------------------------
 
@@ -268,7 +288,34 @@ CREATE TABLE `member_share` (
 INSERT INTO `member_share` (`id`, `member_id`, `member_code`, `no_share`, `admission_fee`, `idcard_fee`, `passbook_fee`, `softuses_fee`, `for_samity`, `cma`, `chb`, `cii`, `cht`, `cnf`, `other_fee`, `for_install`, `created_at`) VALUES
 (4, 11, 'CPSS-00001', 1, 5000, 100, 100, 300, 2250, 725, 725, 725, 725, 725, 625, 500, '2025-09-14 17:55:20'),
 (9, 18, 'CPSS-00012', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 19, 'CPSS-00019', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(10, 19, 'CPSS-00019', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 20, 'CPSS-00020', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-09-20 23:38:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` int(11) NOT NULL,
+  `service_name_bn` text NOT NULL,
+  `service_name_en` text NOT NULL,
+  `about_service` text NOT NULL,
+  `icon` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `service_name_bn`, `service_name_en`, `about_service`, `icon`) VALUES
+(4, 'পেশাজীবী সদস্যভুক্তি', 'Professional Membership', '<ul><li>Inclusion of professional as members in the cooperative ( পেশাজীবীদের সমবায়ে সদস্য হিসেবে অন্তর্ভুক্ত করা )</li><li>Identity card/database management for members ( সদস্যদের জন্য পরিচয়পত্র/ডাটাবেস ব্যবস্থাপনা )</li></ul>', 'fa-user'),
+(5, 'প্রশিক্ষণ ও দক্ষতা উন্নয়ন', 'Training & Skill Development', '<ul><li>Training in web development, app development, graphics, cyber security etc ( ওয়েব ডেভেলপমেন্ট, অ্যাপ ডেভেলপমেন্ট, গ্রাফিক্স, সাইবার সিকিউরিটি ইত্যাদি বিষয়ে প্রশিক্ষণ )</li><li>Organizing workshops, seminars &amp; hackathons ( ওয়ার্কশপ, সেমিনার ও হ্যাকাথন আয়োজন )</li></ul>', 'fa-pencil-ruler'),
+(6, 'ক্যারিয়ার সাপোর্ট', 'Career Support', '<ul><li>Creating opportunities to get work in local and international markets ( স্থানীয় ও আন্তর্জাতিক মার্কেটে কাজ পাওয়ার সুযোগ সৃষ্টি )</li><li>Freelancing and Outsourcing Guidelines ( ফ্রিল্যান্সিং ও আউটসোর্সিং গাইডলাইন )</li></ul>', 'fa-check'),
+(7, 'আর্থিক সাপোর্ট', 'Financial Support', '<ul><li>Savings, loans and investment opportunities for members ( সদস্যদের জন্য সঞ্চয়, ঋণ ও বিনিয়োগ সুযোগ )</li><li>Investment or lending in technology-based startups ( প্রযুক্তিভিত্তিক স্টার্টআপে বিনিয়োগ বা ঋণ প্রদান )</li></ul>', 'fa-hand-holding-usd'),
+(8, 'সমবায়ভিত্তিক প্রজেক্ট', 'Cooperative Projects', '<ul><li>Opportunity to work in teams on large projects ( বড় প্রজেক্টে টিম তৈরি করে কাজ করার সুযোগ )</li><li>Income sharing policy among members ( সদস্যদের মধ্যে আয়ের ভাগাভাগি নীতি )</li></ul>', 'fa-tasks'),
+(9, 'কল্যাণমূলক কার্যক্রম', 'Welfare Activities', '<ul><li>Financial assistance to members in times of need ( সদস্যদের জরুরি সময়ে আর্থিক সাহায্য )</li><li>Health, education and social development initiatives ( স্বাস্থ্য, শিক্ষা ও সামাজিক উন্নয়নমূলক উদ্যোগ )</li></ul>', 'fa-smile');
 
 -- --------------------------------------------------------
 
@@ -286,15 +333,20 @@ CREATE TABLE `setup` (
   `phone1` varchar(20) DEFAULT NULL,
   `phone2` varchar(20) DEFAULT NULL,
   `about_text` text DEFAULT NULL,
-  `rules_regulation` text DEFAULT NULL
+  `about_text_en` text DEFAULT NULL,
+  `slogan_bn` text DEFAULT NULL,
+  `slogan_en` text DEFAULT NULL,
+  `smart_bn` text DEFAULT NULL,
+  `smart_en` text DEFAULT NULL,
+  `logo` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `setup`
 --
 
-INSERT INTO `setup` (`id`, `site_name_bn`, `site_name_en`, `registration_no`, `address`, `email`, `phone1`, `phone2`, `about_text`, `rules_regulation`) VALUES
-(1, 'কোডার পেশাজীবী সমবায় সমিতি লিঃ', 'Coder Peshajibi Samabay Samity Ltd.', '0000.0.00.0000.0000', '10/A-3, (7th Floor), Bardhan Bari, Darus Salam Thana, Mirpur-1, Dhaka-1216.', 'cpssl2023@gmail.com', '01540505646', '01829041699', '<p>Bangladesh</p>', '<p>Dhaka</p>');
+INSERT INTO `setup` (`id`, `site_name_bn`, `site_name_en`, `registration_no`, `address`, `email`, `phone1`, `phone2`, `about_text`, `about_text_en`, `slogan_bn`, `slogan_en`, `smart_bn`, `smart_en`, `logo`) VALUES
+(1, 'কোডার পেশাজীবী সমবায় সমিতি লিঃ', 'Coder Peshajibi Samabay Samity Ltd.', '২৫৫৩৫৮', '10/A-3, (7th Floor), Bardhan Bari, Darus Salam Thana, Mirpur-1, Dhaka-1216 - ( ১০/এ-৩, ( ৮ম তলা ) বর্ধন বাড়ি, দারুস সালাম থানা, মিরপুর-১, ঢাকা )', 'cpssl2023@gmail.com', '01540505646', '01829041699', 'কোডার পেশাজীবী সমবায় সমিতি লিঃ একটি স্বেচ্ছাসেবী, পেশাজীবী ও অরাজনৈতিক প্রতিষ্ঠান, যাহা ২০২৩ইং সালে প্রতিষ্ঠা করা হয়েছে এবং ২০২৫ইং সালে বাংলাদেশ সমবায় অধিদপ্তরে নিবন্ধন প্রক্রিয়া চলমান আছে, যাহার ফাইল নং- ২৫৫৩৫৮। &nbsp;আমাদের লক্ষ্য হলো পেশাজীবীদের মধ্যে সহযোগিতা বৃদ্ধি করা এবং তাদের পেশাগত ও আর্থিক উন্নয়ন সাধনে কাজ &nbsp;করা। আমরা বিভিন্ন প্রশিক্ষণ, কর্মশালা ও সেমিনার আয়োজন করি যাতে সদস্যরা তাদের দক্ষতা বৃদ্ধি করতে পারে এবং পেশাগত জীবনে সফল হতে পারে। আমাদের সদস্যরা বিভিন্ন পেশাগত ক্ষেত্রে কাজ করে এবং আমরা তাদের মধ্যে জ্ঞান ও অভিজ্ঞতা বিনিময় করি। সমিতির সদস্যদের জন্য একটি শক্তিশালী আর্থিক এবং পেশাদার প্ল্যাটফর্ম তৈরি করা, যেখানে সদস্যরা যৌথভাবে বিনিয়োগ করে, ব্যবসা পরিচালনা করে এবং মুনাফা ভাগাভাগি করতে পারে। আমরা বিশ্বাস করি যে, সহযোগিতা ও সমবায় মূলক কাজের মাধ্যমে আমরা আমাদের লক্ষ্য অর্জন করতে পারব এবং আমাদের সদস্যদের জন্য একটি উন্নত ও সমৃদ্ধ ভবিষ্যত গড়ে তুলতে পারব।', 'Coder Peshajibi Samabay Samity Ltd. is a voluntary, professional and non-political organization, which was established in 2023 and is in the process of registration with the Bangladesh Cooperatives Department in 2025, whose file no. is 255358. Our goal is to increase cooperation among professionals and work towards their professional and financial development. We organize various trainings, workshops and seminars so that members can enhance their skills and be successful in their professional lives. Our members work in different professional fields and we exchange knowledge and experience among them. To create a strong financial and professional platform for the members of the association, where members can jointly invest, run businesses and share profits. We believe that through cooperation and cooperative work, we can achieve our goals and build a better and prosperous future for our members.', 'একসাথে যেতে হবে বহুদূরে...', 'We have to go far together...', 'দৃঢ়ভাবে টেকসই পথে, সৃজনশীল ভাবনায় ও সৌহার্দ্যপূর্ণ সহযোগিতায় আমরা গড়ে তুলবো একটি সুন্দর ভবিষ্যৎ', 'We will build a beautiful future through strong, sustainable approaches, creative thinking, and friendly cooperation.', 'logo.png');
 
 -- --------------------------------------------------------
 
@@ -377,7 +429,37 @@ INSERT INTO `user_access` (`id`, `user_id`, `member_id`, `login`, `logout`, `cre
 (59, '5', 11, '2025-09-14 21:12:04', '0000-00-00 00:00:00', '2025-09-14 21:12:04'),
 (60, '2', 0, '2025-09-15 19:37:56', '2025-09-15 19:50:09', '2025-09-15 19:37:56'),
 (61, '2', 0, '2025-09-15 19:50:19', '2025-09-15 20:28:14', '2025-09-15 19:50:19'),
-(62, '2', 0, '2025-09-15 22:18:49', '0000-00-00 00:00:00', '2025-09-15 22:18:49');
+(62, '2', 0, '2025-09-15 22:18:49', '0000-00-00 00:00:00', '2025-09-15 22:18:49'),
+(63, '2', 0, '2025-09-19 20:47:44', '0000-00-00 00:00:00', '2025-09-19 20:47:44'),
+(64, '2', 0, '2025-09-19 20:49:13', '0000-00-00 00:00:00', '2025-09-19 20:49:13'),
+(65, '2', 0, '2025-09-19 21:01:56', '0000-00-00 00:00:00', '2025-09-19 21:01:56'),
+(66, '2', 0, '2025-09-19 21:04:36', '0000-00-00 00:00:00', '2025-09-19 21:04:36'),
+(67, '2', 0, '2025-09-19 21:36:29', '0000-00-00 00:00:00', '2025-09-19 21:36:29'),
+(68, '2', 0, '2025-09-19 21:40:18', '0000-00-00 00:00:00', '2025-09-19 21:40:18'),
+(69, '2', 0, '2025-09-19 22:12:12', '0000-00-00 00:00:00', '2025-09-19 22:12:12'),
+(70, '2', 0, '2025-09-19 22:12:23', '0000-00-00 00:00:00', '2025-09-19 22:12:23'),
+(71, '2', 0, '2025-09-19 22:16:01', '0000-00-00 00:00:00', '2025-09-19 22:16:01'),
+(72, '2', 0, '2025-09-19 22:16:19', '0000-00-00 00:00:00', '2025-09-19 22:16:19'),
+(73, '2', 0, '2025-09-19 22:17:46', '0000-00-00 00:00:00', '2025-09-19 22:17:46'),
+(74, '2', 0, '2025-09-19 22:18:49', '2025-09-19 22:23:26', '2025-09-19 22:18:49'),
+(75, '2', 0, '2025-09-19 22:23:46', '2025-09-19 22:23:49', '2025-09-19 22:23:46'),
+(76, '2', 0, '2025-09-19 22:24:00', '2025-09-19 22:24:34', '2025-09-19 22:24:00'),
+(77, '2', 0, '2025-09-19 23:13:08', '0000-00-00 00:00:00', '2025-09-19 23:13:08'),
+(78, '2', 0, '2025-09-19 23:22:52', '0000-00-00 00:00:00', '2025-09-19 23:22:52'),
+(79, '2', 0, '2025-09-20 18:49:47', '0000-00-00 00:00:00', '2025-09-20 18:49:47'),
+(80, '2', 0, '2025-09-20 19:26:40', '0000-00-00 00:00:00', '2025-09-20 19:26:40'),
+(81, '5', 11, '2025-09-20 22:30:36', '2025-09-20 23:24:55', '2025-09-20 22:30:36'),
+(82, '5', 11, '2025-09-20 23:25:22', '2025-09-20 23:25:27', '2025-09-20 23:25:22'),
+(83, '2', 0, '2025-09-20 23:25:44', '2025-09-20 23:26:02', '2025-09-20 23:25:44'),
+(84, '2', 0, '2025-09-20 23:26:28', '2025-09-20 23:35:30', '2025-09-20 23:26:28'),
+(85, '2', 0, '2025-09-20 23:38:37', '0000-00-00 00:00:00', '2025-09-20 23:38:37'),
+(86, '2', 0, '2025-09-23 21:34:22', '2025-09-23 21:39:04', '2025-09-23 21:34:22'),
+(87, '2', 0, '2025-09-23 21:41:05', '0000-00-00 00:00:00', '2025-09-23 21:41:05'),
+(88, '2', 0, '2025-09-23 23:31:54', '2025-09-23 23:38:00', '2025-09-23 23:31:54'),
+(89, '2', 0, '2025-09-24 00:15:08', '0000-00-00 00:00:00', '2025-09-24 00:15:08'),
+(90, '2', 0, '2025-09-27 22:05:44', '2025-09-27 22:39:22', '2025-09-27 22:05:44'),
+(91, '2', 0, '2025-09-28 19:43:43', '2025-09-28 21:42:55', '2025-09-28 19:43:43'),
+(92, '2', 0, '2025-09-28 21:42:59', '2025-09-29 00:02:58', '2025-09-28 21:42:59');
 
 -- --------------------------------------------------------
 
@@ -403,9 +485,10 @@ CREATE TABLE `user_login` (
 
 INSERT INTO `user_login` (`id`, `member_id`, `member_code`, `user_name`, `password`, `re_password`, `role`, `status`, `created_at`) VALUES
 (2, 0, '', 'saifur', 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Admin', 'A', '2025-08-15 19:33:39'),
-(5, 11, 'CPSS-00001', 'erasoft', 'e10adc3949ba59abbe56e057f20f883e', '123456', 'user', 'A', '2025-08-16 00:48:10'),
-(10, 18, 'CPSS-00012', '200000071938', 'e10adc3949ba59abbe56e057f20f883e', '123456', 'user', 'I', '2025-08-16 22:08:28'),
-(11, 19, 'CPSS-00019', 'maruf', 'e10adc3949ba59abbe56e057f20f883e', '123456', 'user', 'R', '2025-09-05 19:20:58');
+(5, 11, 'CPSS-00001', 'erasoft', 'e10adc3949ba59abbe56e057f20f883e', '123456', 'user', 'I', '2025-08-16 00:48:10'),
+(10, 18, 'CPSS-00012', '200000071938', 'e10adc3949ba59abbe56e057f20f883e', '123456', 'user', 'R', '2025-08-16 22:08:28'),
+(11, 19, 'CPSS-00019', 'maruf', 'e10adc3949ba59abbe56e057f20f883e', '123456', 'user', 'A', '2025-09-05 19:20:58'),
+(12, 20, 'CPSS-00020', 'dalim', 'e10adc3949ba59abbe56e057f20f883e', '123456', 'user', 'I', '2025-09-20 23:38:15');
 
 --
 -- Indexes for dumped tables
@@ -415,6 +498,12 @@ INSERT INTO `user_login` (`id`, `member_id`, `member_code`, `user_name`, `passwo
 -- Indexes for table `banner`
 --
 ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `committee_member`
+--
+ALTER TABLE `committee_member`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -460,6 +549,12 @@ ALTER TABLE `member_share`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup`
 --
 ALTER TABLE `setup`
@@ -485,7 +580,13 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `committee_member`
+--
+ALTER TABLE `committee_member`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -497,7 +598,7 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `members_info`
 --
 ALTER TABLE `members_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `member_documents`
@@ -509,13 +610,13 @@ ALTER TABLE `member_documents`
 -- AUTO_INCREMENT for table `member_nominee`
 --
 ALTER TABLE `member_nominee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `member_office`
 --
 ALTER TABLE `member_office`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `member_payments`
@@ -527,7 +628,13 @@ ALTER TABLE `member_payments`
 -- AUTO_INCREMENT for table `member_share`
 --
 ALTER TABLE `member_share`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `setup`
@@ -539,13 +646,13 @@ ALTER TABLE `setup`
 -- AUTO_INCREMENT for table `user_access`
 --
 ALTER TABLE `user_access`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
