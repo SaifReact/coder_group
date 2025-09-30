@@ -23,12 +23,12 @@ try {
                 <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                     <div class="text-center">
                         <i class="fa <?= htmlspecialchars($service['icon']); ?> fa-3x text-primary mb-4"></i>
-                        <h4>
+                        <h5 style="line-height: 35px;">
                             <?= htmlspecialchars($service['service_name_en']); ?> <br>
                             <?= htmlspecialchars($service['service_name_bn']); ?>
-                        </h4>
+                        </h5>
                     </div>
-                    <p class="mb-0"><?= strip_tags($service['about_service'], '<p><ul><li><b><i><br>'); ?></p>
+                    <p class="mb-0" style="font-size: 12px;"><?= strip_tags($service['about_service'], '<p><ul><li><b><i><br>'); ?></p>
                 </div>
                 <?php endforeach; ?>
             </div>

@@ -29,14 +29,15 @@ try {
 
     if ($action === 'update') {
         $id = $_POST['id'] ?? 0;
-        $service_name_bn = $_POST['service_name_bn'] ?? '';
-        $service_name_en = $_POST['service_name_en'] ?? '';
-        $about_service = $_POST['about_service'] ?? '';
-        $icon = $_POST['icon'] ?? '';
+        $service_name_bn = $_POST['edit_service_name_bn'] ?? '';
+        $service_name_en = $_POST['edit_service_name_en'] ?? '';
+        $about_service = $_POST['edit_about_service'] ?? '';
+        $icon = $_POST['edit_icon'] ?? '';
 
         $stmt = $pdo->prepare("UPDATE services 
             SET service_name_bn = ?, service_name_en = ?, about_service = ?, icon = ? 
             WHERE id = ?");
+
         $stmt->execute([$service_name_bn, $service_name_en, $about_service, $icon, $id]);
 
         $_SESSION['success_msg'] = "✅ Setup Updated Successfully..! (সফলভাবে হালনাগাদ করা হলো..!)";
@@ -45,7 +46,7 @@ try {
     }
 
     if ($action === 'delete') {
-        $id = $_GET['id'] ?? 0;
+        $id = $_POST['id'] ?? 0;   // ✅ FIXED
         if ($id) {
             $stmt = $pdo->prepare("DELETE FROM services WHERE id = ?");
             $stmt->execute([$id]);
@@ -54,6 +55,11 @@ try {
         header("Location: ../admin/service.php");
         exit;
     }
+
+    // Invalid action
+    $_SESSION['error'] = "Error: Invalid action.";
+    header("Location: ../admin/service.php");
+    exit;
 
 } catch (Exception $e) {
     $_SESSION['error'] = "Error: " . $e->getMessage();
