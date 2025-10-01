@@ -55,13 +55,18 @@ $role = $_SESSION['role'] ?? '';
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="password.php" style="font-size: .8rem;">
-                        <i class="fa fa-key me-2 text-warning"></i> Password Change
+                    <a class="nav-link text-dark fw-bold" href="payment.php" style="font-size: .8rem;">
+                        <i class="fa fa-credit-card me-2 text-danger"></i> Payment
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="payment.php" style="font-size: .8rem;">
-                        <i class="fa fa-credit-card me-2 text-danger"></i> Payment
+                    <a class="nav-link text-dark fw-bold" href="receipt.php" style="font-size: .8rem;">
+                        <i class="fa fa-credit-card me-2 text-danger"></i> Receipt
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a class="nav-link text-dark fw-bold" href="password.php" style="font-size: .8rem;">
+                        <i class="fa fa-key me-2 text-warning"></i> Password Change
                     </a>
                 </li>
             <?php endif; ?>
