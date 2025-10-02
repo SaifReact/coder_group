@@ -77,7 +77,7 @@ if ($action === 'insert') {
         $_SESSION['success_msg'] = 'Banner added successfully!';
     } else {
         if (!$name_bn || !$name_en) {
-            $_SESSION['error_msg'] = 'Banner name (Bangla/English) is required.';
+            $_SESSION['error_msg'] = '✅ Banner name (Bangla/English) is required.';
         } elseif (!$image) {
             $_SESSION['error_msg'] = 'Only JPG, JPEG, PNG images are allowed.';
         } else {
@@ -107,7 +107,7 @@ if ($action === 'update') {
             $stmt = $pdo->prepare("UPDATE banner SET banner_name_bn=?, banner_name_en=? WHERE id=?");
             $stmt->execute([$name_bn, $name_en, $id]);
         }
-        $_SESSION['success_msg'] = 'Banner updated successfully..! (সফলভাবে হালনাগাদ করা হলো ..!)';
+        $_SESSION['success_msg'] = '✅ Banner updated successfully..! (সফলভাবে হালনাগাদ করা হলো ..!)';
     } else {
         $_SESSION['error_msg'] = 'Failed to update banner.';
     }

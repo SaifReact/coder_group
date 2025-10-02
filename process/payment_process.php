@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Update member_share table
         $stmt = $pdo->prepare("UPDATE member_share SET admission_fee = ?, idcard_fee = ?, passbook_fee = ?, other_fee = ?, softuses_fee = ?, for_samity = ?, for_install = ?, cma = ?, chb = ?, cii = ?, cht = ?, cnf = ?, created_at = ? WHERE member_id = ? AND member_code = ?");
         $stmt->execute([$amount, $idcard_fee, $passbook_fee, $other_fee, $softuses_fee, $for_samity, $for_install, $cma, $chb, $cii, $cht, $cnf, $created_at, $member_id, $member_code]);
-        $_SESSION['success_msg'] = 'Admission payment successful.';
+        $_SESSION['success_msg'] = '✅ Admission - Share Fee Payment Successfully..! (সফলভাবে ভর্তি - শেয়ার ফি পেমেন্ট করা হলো..!) Admission payment successful.';
         header('Location: ../users/payment.php');
         exit;
     } else if ($payment_method != 'admission' && $amount > 0) {
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Update member_share table and add previous_amount
         $stmt = $pdo->prepare("UPDATE member_share SET for_install = for_install + ?, other_fee = other_fee + ?, for_samity = for_samity + ?, cma = cma + ?, chb = chb + ?, cii = cii + ?, cht = cht + ?, cnf = cnf + ?, created_at = ? WHERE member_id = ? AND member_code = ?");
         $stmt->execute([$for_install, $other_fee, $for_samity, $cma, $chb, $cii, $cht, $cnf, $created_at, $member_id, $member_code]);
-        $_SESSION['success_msg'] = 'Payment successful.';
+        $_SESSION['success_msg'] = '✅ Payment Successfully..! (সফলভাবে পেমেন্ট করা হলো..!)';
         header('Location: ../users/payment.php');
         exit;
     } else {
