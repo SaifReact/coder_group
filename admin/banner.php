@@ -38,7 +38,7 @@ include_once __DIR__ . '/../includes/open.php';
                                 </div>
                                 <div class="col-12 mt-4 text-end">
                                     <button type="submit" name="action" value="insert" class="btn btn-primary btn-lg px-4 shadow-sm">
-                                        <i class="fa fa-plus me-2"></i> Add Banner
+                                        Save Banner (ব্যানার সংরক্ষণ করুন)
                                     </button>
                                 </div>
                             </div>
@@ -127,8 +127,7 @@ include_once __DIR__ . '/../includes/open.php';
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" name="action" value="update" class="btn btn-primary">Update Banner</button>
+                          <button type="submit" name="action" value="update" class="btn btn-primary">Update Banner (ব্যানার হালনাগাদ করুন)</button>
                         </div>
                       </form>
                     </div>

@@ -56,7 +56,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <option value="I" <?= $user['status'] === 'I' ? 'selected' : '' ?>>Inactive</option>
                                                     <option value="R" <?= $user['status'] === 'R' ? 'selected' : '' ?>>Rejected</option>
                                                 </select>
-                                                <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                                <button type="submit" class="btn btn-primary btn-sm">Update (হালনাগাদ)</button>
                                             </form>
                                         </td>
                                         <td>

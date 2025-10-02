@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../login.php');
+    exit;
+}
 
 include_once __DIR__ . '/../includes/open.php';
 ?>
@@ -54,7 +58,7 @@ include_once __DIR__ . '/../includes/open.php';
           <!-- Submit -->
           <div class="mt-4 text-end">
             <button type="submit" class="btn btn-primary btn-lg px-4 shadow-sm">
-              <i class="bi bi-upload"></i> Save Documents
+              Save Documents (ডকুমেন্টস সংরক্ষণ করুন)
             </button>
           </div>
         </form>
@@ -69,30 +73,8 @@ include_once __DIR__ . '/../includes/open.php';
 
 <?php include_once __DIR__ . '/../includes/end.php'; ?>
 
-<div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; min-width: 300px;">
-  <div id="toastMsg" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body" id="toastBody">Toast message</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div>
-</div>
-
 <script>
-function showToast(message, type = 'success') {
-    const toastEl = document.getElementById('toastMsg');
-    const toastBody = document.getElementById('toastBody');
-    toastBody.textContent = message;
-    toastEl.classList.remove('bg-success', 'bg-danger', 'bg-primary');
-    toastEl.classList.add(type === 'success' ? 'bg-success' : (type === 'error' ? 'bg-danger' : 'bg-primary'));
-    const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
-    toast.show();
-}
-</script>
-
-      
-      <script>
-      const docLabels = {
+    const docLabels = {
         101: 'জাতীয় পরিচয়পত্র / জন্ম সনদ (National ID / Birth Certificate)',
         102: 'স্বাক্ষর (Signature)',
         103: 'শিক্ষাগত যোগ্যতার সনদ (Educational Qualification Certificate)',

@@ -112,7 +112,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="col-12 mt-4 text-end">
                                     <button type="submit" class="btn btn-primary btn-lg px-4 shadow-sm">
-                                        <i class="fa fa-save me-2"></i> Update Settings
+                                        <i class="fa fa-save me-2"></i> Update Settings (সেটিংস হালনাগাদ করুন)
                                     </button>
                                 </div>
                             </div>

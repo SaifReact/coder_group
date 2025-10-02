@@ -175,7 +175,7 @@ include_once __DIR__ . '/../includes/open.php';
               </div>
 
               <div class="col-md-3 d-flex align-items-end">
-                <button type="submit" class="btn btn-primary w-100">Generate Receipt</button>
+                <button type="submit" class="btn btn-primary w-100">Generate Receipt (রসিদ তৈরি করুন)</button>
               </div>
             </form>
 

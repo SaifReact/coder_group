@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $role = $_SESSION['role'] ?? '';
 ?>
+
 <nav class="col-12 col-md-2 col-lg-2 bg-light sidebar shadow-sm rounded-3 mb-4 mb-md-0 p-0" style="min-height:500px; font-family: 'Poppins', Arial, sans-serif;">
     <div class="position-sticky pt-5">
         <ul class="nav flex-column">
@@ -51,7 +52,7 @@ $role = $_SESSION['role'] ?? '';
                 </li>
                 <li class="nav-item mb-3">
                     <a class="nav-link text-dark fw-bold" href="documents.php" style="font-size: .8rem;">
-                        <i class="fa fa-file-upload me-2 text-success"></i> Documents Upload
+                        <i class="fa fa-file-upload me-2 text-success"></i> Documents
                     </a>
                 </li>
                 <li class="nav-item mb-3">
@@ -66,7 +67,7 @@ $role = $_SESSION['role'] ?? '';
                 </li>
                 <li class="nav-item mb-3">
                     <a class="nav-link text-dark fw-bold" href="password.php" style="font-size: .8rem;">
-                        <i class="fa fa-key me-2 text-warning"></i> Password Change
+                        <i class="fa fa-key me-2 text-warning"></i> Password
                     </a>
                 </li>
             <?php endif; ?>

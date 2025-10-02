@@ -98,7 +98,7 @@ include_once __DIR__ . '/../includes/open.php';
                   <input type="date" class="form-control" id="payment_date" name="payment_date" required>
                 </div>
                 <div class="col-12 mt-4 text-end">
-                  <button type="submit" id="submit" class="btn btn-primary btn-lg px-4 shadow-sm">Submit Payment</button>
+                  <button type="submit" id="submit" class="btn btn-primary btn-lg px-4 shadow-sm">Submit Payment (পেমেন্ট সংরক্ষণ করুন)</button>
                 </div>
               </div>
             </form>

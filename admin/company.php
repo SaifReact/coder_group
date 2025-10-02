@@ -40,7 +40,7 @@ $companies = $stmt->fetchAll();
                                 </div>
                                 <div class="col-12 mt-4 text-end">
                                     <button type="submit" name="action" value="insert" class="btn btn-primary btn-lg px-4 shadow-sm">
-                                        <i class="fa fa-plus me-2"></i> Add Company
+                                        Save Company (কোম্পানি সংরক্ষণ করুন)
                                     </button>
                                 </div>
                             </div>
@@ -135,8 +135,7 @@ $companies = $stmt->fetchAll();
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" name="action" value="update" class="btn btn-primary">Update Company</button>
+                          <button type="submit" name="action" value="update" class="btn btn-primary">Update Company (কোম্পানি হালনাগাদ করুন)</button>
                         </div>
                       </form>
                     </div>

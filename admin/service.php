@@ -45,7 +45,7 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="col-12 mt-4 text-end">
                                     <button type="submit" class="btn btn-primary btn-lg px-4 shadow-sm">
-                                        <i class="fa fa-save me-2"></i> Save Service
+                                        Save Service (সেবা সংরক্ষণ করুন)
                                     </button>
                                 </div>
                             </div>
@@ -124,8 +124,7 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" name="action" value="update" class="btn btn-primary">Update Service</button>
+                          <button type="submit" name="action" value="update" class="btn btn-primary">Update Service (সেবা হালনাগাদ করুন)</button>
                         </div>
                       </form>
                     </div>
