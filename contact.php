@@ -5,7 +5,7 @@
        <div class="row justify-content-center">
          <div class="col-12 col-md-12 col-lg-12 col-xl-12">
            <div class="glass-card-header mb-1">
-             <h5 class="text-center fw-bold" style="color:#045D5D; letter-spacing:1px; text-shadow:1px 2px 8px #fff8; font-size:1.5rem; font-family:'Poppins',sans-serif;">Have Any Query? ( কোন প্রশ্ন আছে? )</h5> 
+             <h5 class="text-center fw-bold" style="color:#045D5D; letter-spacing:1px; text-shadow:1px 2px 8px #fff8; font-size:1.5rem; font-family:'Poppins',sans-serif;">কোন প্রশ্ন আছে? ( Have Any Query? )</h5> 
            </div>
            <form method="post" action="process/member_register_process.php" enctype="multipart/form-data">
              <div id="formErrorMsg" class="alert alert-danger" style="display:none;"></div>
@@ -45,7 +45,7 @@
                  </div>
                </div>
                <div class="section-card">
-                 <h5>Google Map (গুগল ম্যাপ)</h5>
+                 <h5>গুগল ম্যাপ ( Google Map )</h5>
                  <hr />
                  <div class="row">
                    

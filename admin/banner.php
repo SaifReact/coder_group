@@ -2,7 +2,7 @@
 session_start();
 
 include_once __DIR__ . '/../config/config.php';
-$stmt = $pdo->query("SELECT * FROM banner ORDER BY id DESC");
+$stmt = $pdo->query("SELECT * FROM banner ORDER BY id ASC");
 $banners = $stmt->fetchAll();
 
 include_once __DIR__ . '/../includes/open.php';

@@ -5,7 +5,7 @@
        <div class="row justify-content-center">
          <div class="col-12 col-md-12 col-lg-12 col-xl-12">
            <div class="glass-card-header">
-             <h5 class="text-center fw-bold" style="color:#045D5D; letter-spacing:1px; text-shadow:1px 2px 8px #fff8; font-size:1.5rem; font-family:'Poppins',sans-serif;">Member Registration Form ( সদস্য নিবন্ধন ফর্ম )</h5> <?php
+             <h5 class="text-center fw-bold" style="color:#045D5D; letter-spacing:1px; text-shadow:1px 2px 8px #fff8; font-size:1.5rem; font-family:'Poppins',sans-serif;">সদস্য নিবন্ধন ফর্ম ( Member Registration Form )</h5> <?php
             $agreed = isset($_GET['agreed']) ? base64_decode($_GET['agreed']) : '';
             ?>
            </div>
@@ -18,18 +18,6 @@
              </div>
              <div class="mb-4">
                <div class="glass-card mb-2">
-                 <div class="row">
-                   <div class="col-md-9">
-                     <label for="profile_image" class="form-label">Profile Image <span class="text-secondary small">(ছবি নির্বাচন করুন)</span>
-                     </label>
-                     <input class="form-control" type="file" id="profile_image" name="profile_image" accept="image/*" onchange="previewImage(event)">
-                     <span id="profileImageError" class="text-danger small"></span>
-                   </div>
-                   <div class="col-md-3 d-flex justify-content-center align-items-center position-relative" style="min-height: 90px;">
-                     <img id="imagePreview" src="#" alt="Image Preview" style="display:none; max-width: 200px; max-height: 75px; border-radius: 5px; box-shadow: 0 2px 8px #0002; background: #fff; padding: 6px;" />
-                     <button type="button" id="profileImgClear" class="btn-close" style="display:none; position:absolute; top:8px; right:8px; background:#d33; opacity:0.8; width:18px; height:18px; padding:2px; border-radius:50%; z-index:2;" tabindex="-1" title="Clear Image"></button>
-                   </div>
-                 </div>
                  <div class="row">
                    <div class="col-md-4">
                      <div class="mb-2">
@@ -129,9 +117,21 @@
                      </div>
                    </div>
                  </div>
+                 <div class="row">
+                   <div class="col-md-9">
+                     <label for="profile_image" class="form-label">সদস্যের ছবি <span class="text-secondary small">(Member Photo)</span>
+                     </label>
+                     <input class="form-control" type="file" id="profile_image" name="profile_image" accept="image/*" onchange="previewImage(event)">
+                     <span id="profileImageError" class="text-danger small"></span>
+                   </div>
+                   <div class="col-md-3 d-flex justify-content-center align-items-center position-relative" style="min-height: 90px;">
+                     <img id="imagePreview" src="#" alt="Image Preview" style="display:none; max-width: 200px; max-height: 75px; border-radius: 5px; box-shadow: 0 2px 8px #0002; background: #fff; padding: 6px;" />
+                     <button type="button" id="profileImgClear" class="btn-close" style="display:none; position:absolute; top:8px; right:8px; background:#d33; opacity:0.8; width:18px; height:18px; padding:2px; border-radius:50%; z-index:2;" tabindex="-1" title="Clear Image"></button>
+                   </div>
+                 </div>
                </div>
                <div class="section-card">
-                 <h5>Professional Info (পেশার তথ্য)</h5>
+                 <h5>পেশার তথ্য ( Professional Info )</h5>
                  <hr />
                  <div class="row">
                    <div class="col-md-6">
@@ -159,7 +159,7 @@
                </div>
                <!-- Nominee Information Section -->
                <div class="section-card">
-                 <h5>Nominee Info (নমীনির তথ্য)</h5>
+                 <h5>নমীনির তথ্য ( Nominee Info )</h5>
                  <hr />
                  <div id="nomineeSection">
                    <!-- Nominee cards will be appended here -->
@@ -170,16 +170,16 @@
                  </div>
                </div>
                <div class="section-card">
-                 <h5>User Profile (ইউজার প্রোফাইল)</h5>
+                 <h5>ইউজার প্রোফাইল ( User Profile )</h5>
                  <hr />
                  <div class="row">
                    <div class="col-md-4 mb-3">
-                     <label for="username" class="form-label">Username <span class="text-secondary small">(ইউজারনেম)</span>
+                     <label for="username" class="form-label">ইউজারনেম <span class="text-secondary small">(Username)</span>
                      </label>
                      <input type="text" class="form-control" id="username" name="username" required>
                    </div>
                    <div class="col-md-4 mb-3">
-                     <label for="password" class="form-label">Password <span class="text-secondary small">(পাসওয়ার্ড)</span>
+                     <label for="password" class="form-label">পাসওয়ার্ড <span class="text-secondary small">(Password)</span>
                      </label>
                      <!-- Password Field (with eye icon) -->
                      <div class="input-group">
@@ -190,7 +190,7 @@
                      </div>
                    </div>
                    <div class="col-md-4 mb-3">
-                     <label for="retype_password" class="form-label">Retype Password <span class="text-secondary small">(পুনরায় পাসওয়ার্ড)</span>
+                     <label for="retype_password" class="form-label">পুনরায় পাসওয়ার্ড <span class="text-secondary small">(Retype Password)</span>
                      </label>
                      <!-- Retype Password Field (rounded, with checkmark only) -->
                      <div class="position-relative">
@@ -202,7 +202,7 @@
                  </div>
                </div>
                <div class="d-grid gap-2 mt-2">
-                 <button type="submit" class="btn btn-lg btn-success rounded-pill shadow-sm" style="font-size:1.2rem;letter-spacing:1px;">Submit Application (আবেদনটি জমা দিন)</button>
+                 <button type="submit" class="btn btn-lg btn-success rounded-pill shadow-sm" style="font-size:1.2rem;letter-spacing:1px;">আবেদনটি জমা দিন ( Submit Application )</button>
                </div>
              </div>
          </div>

@@ -225,7 +225,7 @@ include_once __DIR__ . '/../includes/open.php';
                                 <option value="december">December (ডিসেম্বর)</option>
                             </select>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label for="payment_year" class="form-label">Year</label>
                             <select class="form-select" id="payment_year" name="payment_year" required>
                                 <option value="2025">2025</option>
@@ -233,7 +233,7 @@ include_once __DIR__ . '/../includes/open.php';
                                 <option value="2027">2027</option>
                             </select>
                         </div>
-                        <div class="col-md-2 d-flex align-items-end">
+                        <div class="col-md-3 d-flex align-items-end">
                             <button type="submit" class="btn btn-primary w-100">Generate Receipt</button>
                         </div>
                     </form>
@@ -356,14 +356,14 @@ include_once __DIR__ . '/../includes/open.php';
                                         <h5 class="mb-0 d-inline-block me-3"><?= htmlspecialchars($receipt['other_fee_amount'] ?? 'other_fee_amount') ?></h5>
                                     </div>
                                 </div>
-                                <div class="mb-3 d-flex align-items-center">
+                                <div class="mb-2 d-flex align-items-center">
                                     <label class="me-2 text-dark">Due of Amount</label>
                                     <div class="flex-grow-1 border-bottom border-dark border-1 pb-1">
                                         <h5 class="mb-0 d-inline-block me-3"><?= htmlspecialchars($receipt['net_amount'] ?? 'net_amount') ?></h5>
                                     </div>
                                 </div>
 
-                                <div class="mb-3 d-flex align-items-center">
+                                <div class="mb-2 d-flex align-items-center">
                                     <label class="me-2 text-dark">In word</label>
                                     <div class="flex-grow-1 border-bottom border-dark border-1 pb-1">
                                         <h5 class="mb-0 d-inline-block me-3"><?= htmlspecialchars($receipt['total_amount_words'] ?? 'total_amount_words') ?></h5>
@@ -379,7 +379,7 @@ include_once __DIR__ . '/../includes/open.php';
                                         <p class="fw-bold mb-0 small" style="color: var(--bs-corporate-blue);">Amount=</p>
                                         <div class="bg-white border border-primary ms-2" style="width: 100px; height: 25px;"><?= htmlspecialchars($receipt['total_amount'] ?? 'total_amount') ?></div>
                                     </div>                                  
-                                    <div class="d-flex align-items-end me-3" style="width: 30%; z-index: 12;">
+                                    <div class="d-flex align-items-end me-3" style="width: 35%; z-index: 12;">
                                         <label class="fw-bold me-2" style="color: var(--bs-corporate-blue);"> Print Date : </label>
                                         <span class="text-dark"><?= date('d-m-Y H:i') ?></span>
                                     </div>                                  

@@ -3,7 +3,7 @@ session_start();
 
 include_once __DIR__ . '/../includes/open.php';
 
-$stmt = $pdo->query("SELECT * FROM company ORDER BY id DESC");
+$stmt = $pdo->query("SELECT * FROM company ORDER BY id ASC");
 $companies = $stmt->fetchAll();
 ?>
 
@@ -31,6 +31,10 @@ $companies = $stmt->fetchAll();
                                     <label for="company_image" class="form-label">Company Logo</label>
                                     <input type="file" class="form-control" id="company_image" name="company_image" accept="image/*" required onchange="previewCompanyImage(event)">
                                 </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="about_company" class="form-label">About Company</label>
+                                    <textarea class="form-control" id="about_company" name="about_company" rows="5"></textarea>
+                                </div>
                                 <div class="col-md-6 mb-3">
                                     <img id="companyImagePreview" src="#" alt="Preview" style="display:none;max-height:80px;margin-top:8px;">
                                 </div>
@@ -49,6 +53,7 @@ $companies = $stmt->fetchAll();
                                         <th>ID</th>
                                         <th>Company Name (English)</th>
                                         <th>Company Name (Bangla)</th>
+                                        <th>About Company</th>
                                         <th>Logo</th>
                                         <th>Actions</th>
                                     </tr>
@@ -59,6 +64,7 @@ $companies = $stmt->fetchAll();
                                         <td><?= $company['id']; ?></td>
                                         <td><?= htmlspecialchars($company['company_name_en']); ?></td>
                                         <td><?= htmlspecialchars($company['company_name_bn']); ?></td>
+                                        <td><?= htmlspecialchars($company['about_company']); ?></td>
                                         <td>
                                             <img src="../company/<?= htmlspecialchars($company['company_image']); ?>" style="height:40px;cursor:pointer;" onclick="showCompanyModal('../company/<?= htmlspecialchars($company['company_image']); ?>')">
                                         </td>
@@ -69,7 +75,8 @@ $companies = $stmt->fetchAll();
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
-                                            <button type="button" class="btn btn-info btn-sm" onclick="editCompany(<?= $company['id']; ?>, '<?= htmlspecialchars($company['company_name_en'], ENT_QUOTES); ?>', '<?= htmlspecialchars($company['company_name_bn'], ENT_QUOTES); ?>', '../company/<?= htmlspecialchars($company['company_image']); ?>')">
+                                            
+                                            <button type="button" class="btn btn-info btn-sm" onclick="editCompany(<?= $company['id']; ?>, '<?= htmlspecialchars($company['company_name_en'], ENT_QUOTES); ?>', '<?= htmlspecialchars($company['company_name_bn'], ENT_QUOTES); ?>', '<?= htmlspecialchars($company['about_company'], ENT_QUOTES); ?>', '../company/<?= htmlspecialchars($company['company_image']); ?>')">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </td>
@@ -118,6 +125,10 @@ $companies = $stmt->fetchAll();
                               <input type="file" class="form-control" id="edit_company_image" name="company_image" accept="image/*" onchange="previewEditCompanyImage(event)">
                               <img id="editCompanyImagePreview" src="#" alt="Preview" style="display:none;max-height:80px;margin-top:8px;">
                             </div>
+                            <div class="col-12 col-md-6 mb-3">
+                              <label for="edit_about_company" class="form-label">About Service</label>
+                              <textarea class="form-control" id="edit_about_company" name="edit_about_company" rows="5"></textarea>
+                            </div>
                             <div class="mb-3 col-md-6">
                               <label>Current Logo</label>
                               <img id="editCompanyCurrentImage" src="#" alt="Current Logo" style="max-height:80px;">
@@ -140,6 +151,31 @@ $companies = $stmt->fetchAll();
 <!-- Hero End -->
 
 <?php include_once __DIR__ . '/../includes/end.php'; ?>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
+
+<script>
+const editors = {}; // store editors globally
+['#about_company', '#edit_about_company'].forEach(selector => {
+    const el = document.querySelector(selector);
+    if (el) {
+        ClassicEditor.create(el, {
+            toolbar: [
+                'bold', 'italic', 'underline', 'link',
+                'bulletedList', 'numberedList',
+                '|', 'fontSize', 'undo', 'redo'
+            ],
+            fontSize: {
+                options: [9, 11, 13, 'default', 17, 19, 21]
+            }
+        }).then(editor => {
+            editors[selector] = editor; // save reference
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+});
+</script>
 
 <script>
 function previewCompanyImage(event) {
@@ -165,15 +201,22 @@ function previewEditCompanyImage(event) {
     img.style.display = 'none';
   }
 }
-function editCompany(id, nameEn, nameBn, imgSrc) {
+function editCompany(id, nameEn, nameBn, aboutCompany, imgSrc) {
   document.getElementById('edit_id').value = id;
   document.getElementById('edit_company_name_en').value = nameEn;
   document.getElementById('edit_company_name_bn').value = nameBn;
+  document.getElementById('edit_about_company').value = aboutCompany;
   document.getElementById('editCompanyCurrentImage').src = imgSrc;
   document.getElementById('editCompanyImagePreview').style.display = 'none';
+
+  if (editors['#edit_about_company']) {
+        editors['#edit_about_company'].setData(aboutCompany);
+    }
+
   var modal = new bootstrap.Modal(document.getElementById('editCompanyModal'));
   modal.show();
 }
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <?php include '../includes/toast.php'; ?>

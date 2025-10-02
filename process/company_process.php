@@ -7,18 +7,20 @@ if ($action === 'insert') {
     $company_name_en = $_POST['company_name_en'] ?? '';
     $company_name_bn = $_POST['company_name_bn'] ?? '';
     $company_image = $_FILES['company_image'] ?? null;
+    $about_company = $_POST['about_company'] ?? '';
 
-    if ($company_name_en && $company_name_bn && $company_image) {
+    if ($company_name_en && $company_name_bn && $company_image && $about_company) {
         $image_name = time() . '_' . basename($company_image['name']);
         $target_dir = '../company/';
         $target_file = $target_dir . $image_name;
 
         if (move_uploaded_file($company_image['tmp_name'], $target_file)) {
-            $stmt = $pdo->prepare("INSERT INTO company (company_name_en, company_name_bn, company_image) VALUES (:company_name_en, :company_name_bn, :company_image)");
+            $stmt = $pdo->prepare("INSERT INTO company (company_name_en, company_name_bn, company_image, about_company) VALUES (:company_name_en, :company_name_bn, :company_image, :about_company)");
             $stmt->execute([
                 ':company_name_en' => $company_name_en,
                 ':company_name_bn' => $company_name_bn,
                 ':company_image' => $image_name,
+                ':about_company' => $about_company,
             ]);
             header('Location: ../admin/company.php?success=Company added successfully');
         } else {
@@ -29,9 +31,10 @@ if ($action === 'insert') {
     }
 } elseif ($action === 'update') {
     $id = $_POST['id'] ?? '';
-    $company_name_en = $_POST['company_name_en'] ?? '';
-    $company_name_bn = $_POST['company_name_bn'] ?? '';
-    $company_image = $_FILES['company_image'] ?? null;
+    $company_name_en = $_POST['edit_company_name_en'] ?? '';
+    $company_name_bn = $_POST['edit_company_name_bn'] ?? '';
+    $company_image = $_FILES['edit_company_image'] ?? null;
+    $about_company = $_POST['edit_about_company'] ?? ''; 
 
     if ($id && $company_name_en && $company_name_bn) {
         $stmt = $pdo->prepare("SELECT company_image FROM company WHERE id = :id");
@@ -55,11 +58,12 @@ if ($action === 'insert') {
             }
         }
 
-        $stmt = $pdo->prepare("UPDATE company SET company_name_en = :company_name_en, company_name_bn = :company_name_bn, company_image = :company_image WHERE id = :id");
+        $stmt = $pdo->prepare("UPDATE company SET company_name_en = :company_name_en, company_name_bn = :company_name_bn, company_image = :company_image, about_company = :about_company WHERE id = :id");
         $stmt->execute([
             ':company_name_en' => $company_name_en,
             ':company_name_bn' => $company_name_bn,
             ':company_image' => $image_name,
+            ':about_company' => $about_company,
             ':id' => $id,
         ]);
         header('Location: ../admin/company.php?success=Company updated successfully');

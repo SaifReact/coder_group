@@ -10,7 +10,7 @@
        <div class="row justify-content-center">
          <div class="col-12 col-md-12 col-lg-12 col-xl-12">
            <div class="glass-card">
-             <h5 class="text-center fw-bold mb-4" style="color:#045D5D; letter-spacing:1px; text-shadow:1px 2px 8px #fff8; font-size:1.5rem; font-family:'Poppins',sans-serif;">Member Registration Form ( সদস্য নিবন্ধন ফর্ম )</h5>
+             <h5 class="text-center fw-bold mb-4" style="color:#045D5D; letter-spacing:1px; text-shadow:1px 2px 8px #fff8; font-size:1.5rem; font-family:'Poppins',sans-serif;">সদস্য নিবন্ধন ফর্ম ( Member Registration Form )</h5>
              <hr />
              <div class="mb-4">
                <h5 class="fw-bold mb-3" style="color:#008080;">নিয়মাবলি ও বিধান (Rules and Regulations)</h5>
@@ -79,24 +79,19 @@
                       (The annual business profit/loss of the association, after deducting administrative expenses, will be distributed in proportion to the number of shares.)
                     </li>
                     <li>
-                      সদস্যদের ব্যক্তিগত সঞ্চয় পৃথক অ্যাকাউন্টে রেকর্ড করা হবে। 
-                      (Members’ individual savings will be recorded in a separate account.)
+                      সদস্যদের ব্যক্তিগত সঞ্চয় পৃথক অ্যাকাউন্টে রেকর্ড করা হবে। (Members individual savings will be recorded in a separate account.)
                     </li>
                     <li>
-                      সঞ্চয়ের উপর নির্দিষ্ট হার অনুযায়ী সার্ভিস চার্জ প্রদান করা হবে যা নির্বাহী কমিটি নির্ধারণ করবে। 
-                      (A service charge at a fixed rate on savings will be provided, as determined by the Executive Committee.)
+                      সঞ্চয়ের উপর নির্দিষ্ট হার অনুযায়ী সার্ভিস চার্জ প্রদান করা হবে যা নির্বাহী কমিটি নির্ধারণ করবে। (A service charge at a fixed rate on savings will be provided, as determined by the Executive Committee.)
                     </li>
                     <li>
-                      লাভ/ক্ষতি এবং সার্ভিস চার্জ বার্ষিক সাধারণ সভায় অনুমোদিত হবে।  
-                      (Profit/loss and service charges will be approved at the Annual General Meeting.)
+                      লাভ/ক্ষতি এবং সার্ভিস চার্জ বার্ষিক সাধারণ সভায় অনুমোদিত হবে। (Profit/loss and service charges will be approved at the Annual General Meeting.)
                     </li>
                     <li>
-                      সঞ্চয় উত্তোলনের জন্য সদস্যদের লিখিত আবেদন করতে হবে এবং উত্তোলনের পরিমাণ নির্বাহী কমিটি দ্বারা নির্ধারিত হবে। 
-                      (Members must apply in writing to withdraw savings, and the withdrawal amount will be determined by the Executive Committee.)
+                      সঞ্চয় উত্তোলনের জন্য সদস্যদের লিখিত আবেদন করতে হবে এবং উত্তোলনের পরিমাণ নির্বাহী কমিটি দ্বারা নির্ধারিত হবে। (Members must apply in writing to withdraw savings, and the withdrawal amount will be determined by the Executive Committee.)
                     </li>
                     <li>
-                      সঞ্চয় উত্তোলনের ক্ষেত্রে সদস্যদের ব্যাংক ড্রাফট বা চেক গ্রহণযোগ্য হবে এবং স্বাক্ষরিত গ্যারান্টি ফর্ম জমা দিতে হবে। 
-                      (For savings withdrawals, members must accept bank drafts or checks and submit a signed guarantee form.)
+                      সঞ্চয় উত্তোলনের ক্ষেত্রে সদস্যদের ব্যাংক ড্রাফট বা চেক গ্রহণযোগ্য হবে এবং স্বাক্ষরিত গ্যারান্টি ফর্ম জমা দিতে হবে। (For savings withdrawals, members must accept bank drafts or checks and submit a signed guarantee form.)
                     </li>
                   </ul>
                 </section>
@@ -108,7 +103,7 @@
                       সদস্যরা তাদের সঞ্চয় ও শেয়ারের ভিত্তিতে ঋণ আবেদন করতে পারবেন। (Members can apply for loans based on their savings and shares.)
                     </li>
                     <li>
-                      ঋণের সুদ, মেয়াদ এবং কার্যকর শর্তাবলী নির্বাহী কমিটি নির্ধারণ করবে। (The executive committee will determine the loan interest, duration, and applicable conditions.)
+                      ঋণের সার্ভিস চার্জ, মেয়াদ এবং কার্যকর শর্তাবলী নির্বাহী কমিটি নির্ধারণ করবে। (The executive committee will determine the loan interest, duration, and applicable conditions.)
                     </li>
                     <li>
                       খেলাপি ঋণের ক্ষেত্রে সমিতি আইনানুগ ব্যবস্থা গ্রহণ করবে। (The society will take legal action in case of defaulted loans.)
@@ -211,12 +206,11 @@
         <div class="form-check mt-3">
           <input class="form-check-input" type="checkbox" value="1" id="agreeRules">
           <label class="form-check-label" for="agreeRules" style="color:#00FF00"> আমি উপরোল্লিখিত সকল নিয়মাবলি পড়েছি এবং সম্যকভাবে মেনে চলার অঙ্গীকার সহ সমিতিতে সদস্য হওয়ার উদ্যোগ গ্রহণ করলাম।
-(I have read all the above-mentioned rules and regulations and, with a commitment to fully abide by them, I have taken the initiative to become a member of the cooperative.
-) </label>
+(I have read all the above-mentioned rules and regulations and, with a commitment to fully abide by them, I have taken the initiative to become a member of the cooperative.) </label>
           </div>
           </div>
           <div class="text-center mt-4">
-          <button id="goToFormBtn" class="btn btn-success btn-lg rounded-pill px-5" style="display:none;letter-spacing:1px;">Proceed to Registration Form (নিবন্ধনটি এগিয়ে যান)</button>
+          <button id="goToFormBtn" class="btn btn-success btn-lg rounded-pill px-5" style="display:none;letter-spacing:1px;">নিবন্ধনটি এগিয়ে যান ( Proceed to Registration Form )</button>
           </div>
           </div>
           </div>

@@ -221,7 +221,7 @@
                             <input type="text" name="nominee_relation[]" class="form-control rounded-pill" required>
                         </div>                    
                         <div class="mb-2">
-                            <label for="nominee_image" class="form-label">Nominee Image <span class="text-secondary small">(ছবি নির্বাচন করুন)</span></label>
+                            <label for="nominee_image" class="form-label">নমিনীর ছবি <span class="text-secondary small">(Nominee Photo)</span></label>
                             <div class="d-flex align-items-center gap-3">
                                 <input type="file" name="nominee_image[]" accept="image/*" class="form-control form-control-md nominee-img-input" style="margin-top:2px; max-width:280px;">
                                 <div class="position-relative d-inline-block nominee-img-preview-wrapper">

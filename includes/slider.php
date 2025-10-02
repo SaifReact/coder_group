@@ -12,7 +12,7 @@ $smart = $smart_bn . ($smart_en ? "\n" . $smart_en : '');
 
 // Fetch banners from the database
 try {
-    $stmt = $pdo->query("SELECT banner_image FROM banner ORDER BY id DESC");
+    $stmt = $pdo->query("SELECT banner_image FROM banner ORDER BY id ASC");
     $banners = $stmt->fetchAll();
 } catch (Exception $e) {
     die('Error fetching banners: ' . $e->getMessage());

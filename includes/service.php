@@ -16,6 +16,7 @@ try {
         <div class="container">
             <div class="text-center wow fadeIn" data-wow-delay="0.1s">
                 <h1 class="mb-5">Our <span class="text-uppercase text-primary bg-light px-2">Services</span>
+                ( আমাদের সেবাসমূহ )
                 </h1>
             </div>
             <div class="row g-5">
