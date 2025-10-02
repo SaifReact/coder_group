@@ -12,9 +12,7 @@ include_once __DIR__ . '/../includes/open.php';
             <div class="container">
                <div class="card shadow-lg rounded-3 border-0">
                   <div class="card-body p-4">
-                     <h3 class="mb-3 text-primary fw-bold">
-                        Password Change (পাসওয়ার্ড পরিবর্তন)
-                     </h3>
+                     <h3 class="mb-3 text-primary fw-bold">Password Change <span class="text-secondary">( পাসওয়ার্ড পরিবর্তন )</span></h3>
                      <hr class="mb-4" />
                      <form id="resetForm" action="../process/password_reset.php" method="post" autocomplete="off">
                         <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user_id']); ?>">

@@ -20,8 +20,9 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
             <div class="container">
                 <div class="card shadow-lg rounded-3 border-0">
                     <div class="card-body p-4">
-                        <h3 class="mb-3 text-primary fw-bold">Site Settings</h3>
-                        <hr class="mb-4" />
+                      <h3 class="mb-3 text-primary fw-bold">Site Setup <span class="text-secondary">( সাইট সেটআপ )</span></h3> 
+                      <hr class="mb-4" />
+
                         <form method="post" enctype="multipart/form-data" action="../process/update_settings.php">
                             <div class="row">
                                 <div class="col-12 col-md-6 mb-3">

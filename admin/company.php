@@ -1,13 +1,11 @@
 <?php
 session_start();
-
 include_once __DIR__ . '/../includes/open.php';
 
 $stmt = $pdo->query("SELECT * FROM company ORDER BY id ASC");
 $companies = $stmt->fetchAll();
 ?>
 
-<!-- Hero Start -->
 <div class="container-fluid pb-5 hero-header bg-light">
   <div class="row">
       <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
@@ -15,8 +13,10 @@ $companies = $stmt->fetchAll();
             <div class="container">
                 <div class="card shadow-lg rounded-3 border-0">
                     <div class="card-body p-4">
-                        <h3 class="mb-3 text-primary fw-bold">Company Management</h3>
-                        <hr class="mb-4" />
+                      <h3 class="mb-3 text-primary fw-bold">Company <span class="text-secondary">( কোম্পানি )</span></h3> 
+                      <hr class="mb-4" />
+
+                        <!-- Add Form -->
                         <form action="../process/company_process.php" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -45,14 +45,16 @@ $companies = $stmt->fetchAll();
                                 </div>
                             </div>
                         </form>
+
                         <hr class="my-4" />
+
+                        <!-- Table -->
                         <div class="table-responsive">
                             <table class="table table-bordered align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Company Name (English)</th>
-                                        <th>Company Name (Bangla)</th>
+                                        <th>Company Name</th>
                                         <th>About Company</th>
                                         <th>Logo</th>
                                         <th>Actions</th>
@@ -62,13 +64,14 @@ $companies = $stmt->fetchAll();
                                     <?php foreach ($companies as $company): ?>
                                     <tr>
                                         <td><?= $company['id']; ?></td>
-                                        <td><?= htmlspecialchars($company['company_name_en']); ?></td>
-                                        <td><?= htmlspecialchars($company['company_name_bn']); ?></td>
-                                        <td><?= htmlspecialchars($company['about_company']); ?></td>
+                                        <td><?= htmlspecialchars($company['company_name_en']); ?><br/>
+                                        <?= htmlspecialchars($company['company_name_bn']); ?></td>
+                                        <td><?= strip_tags($company['about_company'], '<p><ul><li><b><i><br>'); ?></td>
                                         <td>
                                             <img src="../company/<?= htmlspecialchars($company['company_image']); ?>" style="height:40px;cursor:pointer;" onclick="showCompanyModal('../company/<?= htmlspecialchars($company['company_image']); ?>')">
                                         </td>
                                         <td>
+                                            <!-- Delete -->
                                             <form action="../process/company_process.php" method="post" style="display:inline-block;">
                                                 <input type="hidden" name="id" value="<?= $company['id']; ?>">
                                                 <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm" onclick="return confirm('Delete this company?');">
@@ -76,7 +79,15 @@ $companies = $stmt->fetchAll();
                                                 </button>
                                             </form>
                                             
-                                            <button type="button" class="btn btn-info btn-sm" onclick="editCompany(<?= $company['id']; ?>, '<?= htmlspecialchars($company['company_name_en'], ENT_QUOTES); ?>', '<?= htmlspecialchars($company['company_name_bn'], ENT_QUOTES); ?>', '<?= htmlspecialchars($company['about_company'], ENT_QUOTES); ?>', '../company/<?= htmlspecialchars($company['company_image']); ?>')">
+                                            <!-- Edit -->
+                                            <button type="button" class="btn btn-info btn-sm" 
+                                              onclick="editCompany(
+                                                <?= $company['id']; ?>, 
+                                                '<?= htmlspecialchars($company['company_name_en'], ENT_QUOTES); ?>', 
+                                                '<?= htmlspecialchars($company['company_name_bn'], ENT_QUOTES); ?>', 
+                                                '<?= htmlspecialchars($company['about_company'], ENT_QUOTES); ?>', 
+                                                '../company/<?= htmlspecialchars($company['company_image']); ?>'
+                                              )">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </td>
@@ -87,50 +98,38 @@ $companies = $stmt->fetchAll();
                         </div>
                     </div>
                 </div>
-                <!-- Company Image Modal -->
-                <div class="modal fade" id="companyImageModal" tabindex="-1" aria-labelledby="companyImageModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width:98vw;width:98vw;">
-                    <div class="modal-content">
-                      <div class="modal-header border-0">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body text-center">
-                        <img id="companyModalImg" src="#" alt="Company Logo" style="max-width:100%;max-height:70vh;border-radius:8px;box-shadow:0 2px 16px #000a;">
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <!-- Edit Modal -->
-                <div class="modal fade" id="editCompanyModal" tabindex="-1" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
+                <div class="modal fade" id="editCompanyModal" tabindex="-1">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <form action="../process/company_process.php" method="post" enctype="multipart/form-data">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="editCompanyModalLabel">Edit Company</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          <h5 class="modal-title">Edit Company</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                           <input type="hidden" name="id" id="edit_id">
                           <div class="row">
                             <div class="mb-3 col-md-6">
                               <label for="edit_company_name_en" class="form-label">Company Name (English)</label>
-                              <input type="text" class="form-control" id="edit_company_name_en" name="company_name_en" required>
+                              <input type="text" class="form-control" id="edit_company_name_en" name="edit_company_name_en" required>
                             </div>
                             <div class="mb-3 col-md-6">
                               <label for="edit_company_name_bn" class="form-label">Company Name (Bangla)</label>
-                              <input type="text" class="form-control" id="edit_company_name_bn" name="company_name_bn" required>
+                              <input type="text" class="form-control" id="edit_company_name_bn" name="edit_company_name_bn" required>
                             </div>
                             <div class="mb-3 col-md-6">
                               <label for="edit_company_image" class="form-label">Company Logo (optional)</label>
-                              <input type="file" class="form-control" id="edit_company_image" name="company_image" accept="image/*" onchange="previewEditCompanyImage(event)">
+                              <input type="file" class="form-control" id="edit_company_image" name="edit_company_image" accept="image/*" onchange="previewEditCompanyImage(event)">
                               <img id="editCompanyImagePreview" src="#" alt="Preview" style="display:none;max-height:80px;margin-top:8px;">
                             </div>
                             <div class="col-12 col-md-6 mb-3">
-                              <label for="edit_about_company" class="form-label">About Service</label>
+                              <label for="edit_about_company" class="form-label">About Company</label>
                               <textarea class="form-control" id="edit_about_company" name="edit_about_company" rows="5"></textarea>
                             </div>
                             <div class="mb-3 col-md-6">
-                              <label>Current Logo</label>
+                              <label>Current Logo</label><br>
                               <img id="editCompanyCurrentImage" src="#" alt="Current Logo" style="max-height:80px;">
                             </div>
                           </div>
@@ -146,10 +145,7 @@ $companies = $stmt->fetchAll();
             </div>
         </main>
   </div>
-  
 </div>
-<!-- Hero End -->
-
 <?php include_once __DIR__ . '/../includes/end.php'; ?>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>

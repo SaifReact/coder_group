@@ -12,9 +12,7 @@ include_once __DIR__ . '/../includes/open.php';
   <div class="container">
     <div class="card shadow-lg rounded-3 border-0">
       <div class="card-body p-4">
-        <h3 class="mb-3 text-primary fw-bold">
-          Documents Upload (ডকুমেন্টস আপলোড)
-        </h3>
+        <h3 class="mb-3 text-primary fw-bold">Documents Upload <span class="text-secondary">( ডকুমেন্টস আপলোড )</span></h3>
         <hr class="mb-4" />
         
         <form id="docForm" action="../process/upload_docs.php" method="POST" enctype="multipart/form-data">

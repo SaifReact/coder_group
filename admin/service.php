@@ -21,8 +21,9 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="container">
                 <div class="card shadow-lg rounded-3 border-0">
                     <div class="card-body p-4">
-                        <h3 class="mb-3 text-primary fw-bold">Services</h3>
-                        <hr class="mb-4" />
+                      <h3 class="mb-3 text-primary fw-bold">Service <span class="text-secondary">( সেবা )</span></h3> 
+                      <hr class="mb-4" />
+
                         <form method="post" enctype="multipart/form-data" action="../process/service_process.php">
                             <input type="hidden" name="action" value="insert">
                             <div class="row">

@@ -16,8 +16,9 @@ include_once __DIR__ . '/../includes/open.php';
             <div class="container">
                 <div class="card shadow-lg rounded-3 border-0">
                     <div class="card-body p-4">
-                        <h3 class="mb-3 text-primary fw-bold">Banner Management</h3>
-                        <hr class="mb-4" />
+                      <h3 class="mb-3 text-primary fw-bold">Banner <span class="text-secondary">( ব্যানার )</span></h3> 
+                      <hr class="mb-4" />
+
                         <form action="../process/banner_process.php" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-6 mb-3">

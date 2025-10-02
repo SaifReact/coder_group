@@ -14,8 +14,9 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'Admin') {
       <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
     <main class="col-12 col-md-9 col-lg-9 col-xl-9 px-md-4">
             <div>
-                <h2 class="mb-4">Admin Dashboard</h2>  
-                <hr>
+                <h3 class="mb-3 text-primary fw-bold">Admin Dashboard <span class="text-secondary">( এডমিন ড্যাশবোর্ড )</span></h3> 
+                <hr class="mb-4" />
+
                 <?php
                 // Fetch member counts
                 include_once '../config/config.php';

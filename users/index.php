@@ -68,8 +68,8 @@ include_once __DIR__ . '/../config/config.php';
       <?php include_once __DIR__ . '/../includes/side_bar.php'; ?>
     <main class="col-12 col-md-9 col-lg-9 col-xl-9 px-md-4">
             <div>
-                <h2 class="mb-4">Dashboard</h2>  
-                <hr>
+                <h3 class="mb-3 text-primary fw-bold">Dashboard <span class="text-secondary">( ড্যাশবোর্ড )</span></h3> 
+                <hr class="mb-4" />
                 
                 <div class="row g-4 mb-4">
                   <div class="col-md-4">

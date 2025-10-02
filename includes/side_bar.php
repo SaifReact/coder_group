@@ -15,17 +15,12 @@ $role = $_SESSION['role'] ?? '';
                 </li>
                 <li class="nav-item mb-3">
                     <a class="nav-link text-dark fw-bold" href="../admin/approval.php" style="font-size: .8rem;">
-                        <i class="fa fa-user-plus me-2 text-success"></i> Approval
+                        <i class="fa fa-user-check me-2 text-success"></i> Approval
                     </a>
                 </li>
-                <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="../admin/committee.php" style="font-size: .8rem;">
-                        <i class="fa fa-user-plus me-2 text-success"></i> Committee
-                    </a>
-                </li>
-                <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="../admin/service.php" style="font-size: .8rem;">
-                        <i class="fa fa-user-plus me-2 text-success"></i> Service
+                 <li class="nav-item mb-3">
+                    <a class="nav-link text-dark fw-bold" href="../admin/company.php" style="font-size: .8rem;">
+                        <i class="fa fa-building me-2 text-info"></i> Company
                     </a>
                 </li>
                 <li class="nav-item mb-3">
@@ -35,12 +30,17 @@ $role = $_SESSION['role'] ?? '';
                 </li>
                 <li class="nav-item mb-3">
                     <a class="nav-link text-dark fw-bold" href="../admin/banner.php" style="font-size: .8rem;">
-                        <i class="fa fa-image me-2 text-danger"></i> Banner
+                        <i class="fa fa-images me-2 text-danger"></i> Banner
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="../admin/company.php" style="font-size: .8rem;">
-                        <i class="fa fa-image me-2 text-danger"></i> Company
+                    <a class="nav-link text-dark fw-bold" href="../admin/service.php" style="font-size: .8rem;">
+                        <i class="fa fa-concierge-bell me-2 text-secondary"></i> Service
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a class="nav-link text-dark fw-bold" href="../admin/committee.php" style="font-size: .8rem;">
+                        <i class="fa fa-users me-2 text-purple"></i> Committee
                     </a>
                 </li>
             <?php else: ?>
@@ -61,7 +61,7 @@ $role = $_SESSION['role'] ?? '';
                 </li>
                 <li class="nav-item mb-3">
                     <a class="nav-link text-dark fw-bold" href="receipt.php" style="font-size: .8rem;">
-                        <i class="fa fa-credit-card me-2 text-danger"></i> Receipt
+                        <i class="fa fa-receipt me-2 text-info"></i> Receipt
                     </a>
                 </li>
                 <li class="nav-item mb-3">
@@ -88,4 +88,6 @@ $role = $_SESSION['role'] ?? '';
     .nav-link i {
         font-size: 1rem;
     }
+    /* Extra Custom Color */
+    .text-purple { color: #6f42c1 !important; }
 </style>

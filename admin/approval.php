@@ -26,8 +26,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="container">
                 <div class="card shadow-lg rounded-3 border-0">
                     <div class="card-body p-4">
-                        <h3 class="mb-3 text-primary fw-bold">Member Register & Status</h3>
-                        <hr class="mb-4" />
+                      <h3 class="mb-3 text-primary fw-bold">Member Approval <span class="text-secondary">( সদস্য অনুমোদন )</span></h3> 
+                      <hr class="mb-4" />
+                      
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped align-middle">
                                 <thead class="table-light">

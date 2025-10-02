@@ -3,18 +3,19 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Include the config file
 include_once __DIR__ . '/../config/config.php';
 
-// Access specific data from the session
-$siteName = isset($_SESSION['setup']['site_name_bn']) ? $_SESSION['setup']['site_name_bn'] : 'কোডার পেশাজীবী সমবায় সমিতি লিঃ';
+$site_name_en = $_SESSION['setup']['site_name_en'] ?? '';
+$site_name_bn = $_SESSION['setup']['site_name_bn'] ?? '';
+
 ?>
+
 <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
     <a href="/coder_group/index.php" class="navbar-brand">
         <span style="
             display: inline-block;
             font-family: 'Poppins', Arial, sans-serif;
-            font-size: 1.1rem;
+            font-size: .9rem;
             font-weight: 700;
             color: #b85c38;
             letter-spacing: 1.5px;
@@ -22,7 +23,9 @@ $siteName = isset($_SESSION['setup']['site_name_bn']) ? $_SESSION['setup']['site
             padding: 0.2em 1.2em 0.2em 1.2em;
             margin: 0.2em 0;
         ">
-            <span style="vertical-align:middle;"><?= htmlspecialchars($siteName); ?></span>
+            <span style="vertical-align:middle; font-size: 1rem"><?= htmlspecialchars($site_name_bn); ?>
+            </span><br />
+            <?= htmlspecialchars($site_name_en); ?>
         </span>
     </a>
     <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
