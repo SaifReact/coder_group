@@ -11,6 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'], $_POST['st
     $status = in_array($_POST['status'], ['A', 'I', 'R']) ? $_POST['status'] : 'I';
     $stmt = $pdo->prepare("UPDATE user_login SET status = ? WHERE id = ?");
     $stmt->execute([$status, $user_id]);
+
+    // Set dynamic success message based on status
+    if ($status === 'A') {
+        $_SESSION['success_msg'] = "✅ Your user has been activated!";
+    } elseif ($status === 'I') {
+        $_SESSION['success_msg'] = "⚠️ Your user has been set to inactive.";
+    } elseif ($status === 'R') {
+        $_SESSION['success_msg'] = "❌ Your user has been rejected.";
+    }
+
+    header('Location: approval.php'); // Redirect to avoid form resubmission
+    exit;
 }
 
 // Fetch all users
@@ -103,5 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <?php include '../includes/toast.php'; ?>

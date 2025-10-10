@@ -10,88 +10,56 @@ include_once __DIR__ . '/../config/config.php';
 $action = $_POST['action'] ?? '';
 
 if ($action === 'insert') {
-    $member_id = $_POST['member_id'] ?? '';
-    $designation = $_POST['designation'] ?? '';
-    $facebook = $_POST['facebook'] ?? '';
-    $linkedin = $_POST['linkedin'] ?? '';
+    $member_id = $_POST['member_id'];
+    $designation = $_POST['designation'];
+    $facebook = $_POST['facebook'];
+    $linkedin = $_POST['linkedin'];
+    $role = isset($_POST['role']) && $_POST['role'] === 'Entrepreneur' ? 'Entrepreneur' : 'Committee Member';
 
-    if ($member_id && $designation) {
-        // fetch member info
-        $stmt = $pdo->prepare("SELECT member_code, name_bn, name_en FROM members_info WHERE id = ?");
-        $stmt->execute([$member_id]);
-        $member = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Fetch member_code from members_info table
+    $stmt = $pdo->prepare("SELECT member_code FROM members_info WHERE id = ?");
+    $stmt->execute([$member_id]);
+    $member_code = $stmt->fetchColumn();
 
-        if ($member) {
-            $stmt = $pdo->prepare("
-                INSERT INTO committee_member 
-                    (member_id, member_code, name_bn, name_en, position, fb, li, created_at) 
-                VALUES 
-                    (?, ?, ?, ?, ?, ?, ?, NOW())
-            ");
-            $stmt->execute([
-                $member_id,
-                $member['member_code'],
-                $member['name_bn'],
-                $member['name_en'],
-                $designation,
-                $facebook,
-                $linkedin
-            ]);
-            $_SESSION['success_msg'] = "Committee member added successfully!";
-        } else {
-            $_SESSION['error_msg'] = "Member not found!";
-        }
-    } else {
-        $_SESSION['error_msg'] = "Required fields missing!";
+    if (!$member_code) {
+        $_SESSION['error_msg'] = "Invalid member selected!";
+        header('Location: ../admin/committee.php');
+        exit;
     }
 
-    header("Location: ../admin/committee.php");
+    // Insert into committee_member table
+    $stmt = $pdo->prepare("INSERT INTO committee_member (member_id, member_code, position, fb, li, role) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$member_id, $member_code, $designation, $facebook, $linkedin, $role]);
+
+    $_SESSION['success_msg'] = "✅ Committee member added successfully!";
+    header('Location: ../admin/committee.php');
     exit;
 
 } elseif ($action === 'update') {
-    $id = $_POST['id'] ?? '';
-    $member_id = $_POST['member_id'] ?? '';
-    $designation = $_POST['designation'] ?? '';
-    $facebook = $_POST['facebook'] ?? '';
-    $linkedin = $_POST['linkedin'] ?? '';
+    $id = $_POST['id'];
+    $member_id = $_POST['edit_member_id'];
+    $designation = $_POST['edit_designation'];
+    $facebook = $_POST['edit_facebook'];
+    $linkedin = $_POST['edit_linkedin'];
+    $role = isset($_POST['edit_role']) && $_POST['edit_role'] === 'Entrepreneur' ? 'Entrepreneur' : 'Committee Member';
 
-    if ($id && $member_id && $designation) {
-        // fetch member info
-        $stmt = $pdo->prepare("SELECT member_code, name_bn, name_en FROM members_info WHERE id = ?");
-        $stmt->execute([$member_id]);
-        $member = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Fetch member_code from members_info table
+    $stmt = $pdo->prepare("SELECT member_code FROM members_info WHERE id = ?");
+    $stmt->execute([$member_id]);
+    $member_code = $stmt->fetchColumn();
 
-        if ($member) {
-            $stmt = $pdo->prepare("
-                UPDATE committee_member SET 
-                    member_id = ?, 
-                    member_code = ?, 
-                    name_bn = ?, 
-                    name_en = ?, 
-                    position = ?, 
-                    fb = ?, 
-                    li = ? 
-                WHERE id = ?
-            ");
-            $stmt->execute([
-                $member_id,
-                $member['member_code'],
-                $member['name_bn'],
-                $member['name_en'],
-                $designation,
-                $facebook,
-                $linkedin,
-                $id
-            ]);
-            $_SESSION['success_msg'] = "Committee member updated successfully!";
-        } else {
-            $_SESSION['error_msg'] = "Member not found!";
-        }
-    } else {
-        $_SESSION['error_msg'] = "Required fields missing!";
+    if (!$member_code) {
+        $_SESSION['error_msg'] = "Invalid member selected!";
+        header('Location: ../admin/committee.php');
+        exit;
     }
 
-    header("Location: ../admin/committee.php");
+    // Update committee_member table
+    $stmt = $pdo->prepare("UPDATE committee_member SET member_id = ?, member_code = ?, position = ?, fb = ?, li = ?, role = ? WHERE id = ?");
+    $stmt->execute([$member_id, $member_code, $designation, $facebook, $linkedin, $role, $id]);
+
+    $_SESSION['success_msg'] = "✅ Committee member updated successfully!";
+    header('Location: ../admin/committee.php');
     exit;
 
 } elseif ($action === 'delete') {
@@ -100,7 +68,7 @@ if ($action === 'insert') {
     if ($id) {
         $stmt = $pdo->prepare("DELETE FROM committee_member WHERE id = ?");
         $stmt->execute([$id]);
-        $_SESSION['success_msg'] = "Committee member deleted successfully!";
+        $_SESSION['success_msg'] = "✅ Committee member deleted successfully!";
     } else {
         $_SESSION['error_msg'] = "Invalid request!";
     }

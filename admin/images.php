@@ -32,15 +32,15 @@ include_once __DIR__ . '/../includes/open.php';
                                 </div>
                                 <!-- Existing Banner Name Fields -->
                                 <div class="col-md-6 mb-3">
-                                    <label for="banner_name_bn" class="form-label">Banner Name (Bangla)</label>
+                                    <label for="banner_name_bn" class="form-label"> Name (Bangla)</label>
                                     <input type="text" class="form-control" id="banner_name_bn" name="banner_name_bn" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="banner_name_en" class="form-label">Banner Name (English)</label>
+                                    <label for="banner_name_en" class="form-label">Name (English)</label>
                                     <input type="text" class="form-control" id="banner_name_en" name="banner_name_en" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="banner_image" class="form-label">Banner Image</label>
+                                    <label for="banner_image" class="form-label">Image</label>
                                     <input type="file" class="form-control" id="banner_image" name="banner_image" accept="image/*" required onchange="previewBannerImage(event)">
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -134,15 +134,15 @@ include_once __DIR__ . '/../includes/open.php';
                               </select>
                             </div>
                             <div class="mb-3 col-md-6">
-                              <label for="edit_banner_name_bn" class="form-label">Banner Name (Bangla)</label>
+                              <label for="edit_banner_name_bn" class="form-label">Name (Bangla)</label>
                               <input type="text" class="form-control" id="edit_banner_name_bn" name="banner_name_bn" required>
                             </div>
                             <div class="mb-3 col-md-6">
-                              <label for="edit_banner_name_en" class="form-label">Banner Name (English)</label>
+                              <label for="edit_banner_name_en" class="form-label">Name (English)</label>
                               <input type="text" class="form-control" id="edit_banner_name_en" name="banner_name_en" required>
                             </div>
                             <div class="mb-3 col-md-6">
-                              <label for="edit_banner_image" class="form-label">Banner Image (optional)</label>
+                              <label for="edit_banner_image" class="form-label">Image (optional)</label>
                               <input type="file" class="form-control" id="edit_banner_image" name="banner_image" accept="image/*" onchange="previewEditBannerImage(event)">
                               <img id="editBannerImagePreview" src="#" alt="Preview" style="display:none;max-height:80px;margin-top:8px;">
                             </div>
@@ -153,7 +153,7 @@ include_once __DIR__ . '/../includes/open.php';
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="submit" name="action" value="update" class="btn btn-primary">Update Banner (ব্যানার হালনাগাদ করুন)</button>
+                          <button type="submit" name="action" value="update" class="btn btn-primary">Update Image ( ছবি হালনাগাদ করুন )</button>
                         </div>
                       </form>
                     </div>
