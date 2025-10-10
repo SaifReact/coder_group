@@ -19,7 +19,7 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'Admin') {
 
                 <?php
                 // Fetch member counts
-                include_once '../config/config.php';
+                include_once __DIR__ . '/../config/config.php';
                 $approved = $pdo->query("SELECT COUNT(*) FROM user_login WHERE status='A' and role = 'user'")->fetchColumn();
                 $pending = $pdo->query("SELECT COUNT(*) FROM user_login WHERE status='I' and role = 'user'")->fetchColumn();
                 $rejected = $pdo->query("SELECT COUNT(*) FROM user_login WHERE status='R' and role = 'user'")->fetchColumn();

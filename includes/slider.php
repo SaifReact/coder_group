@@ -5,11 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 // Ensure the correct path to config.php
 include_once __DIR__ . '/../config/config.php';
 
-$smart_bn    = $_SESSION['setup']['smart_bn'] ?? '';
-$smart_en    = $_SESSION['setup']['smart_en'] ?? '';
-
-$smart = $smart_bn . ($smart_en ? "\n" . $smart_en : '');
-
 // Fetch banners from the database
 try {
     $stmt = $pdo->query("SELECT banner_image FROM banner ORDER BY id ASC");

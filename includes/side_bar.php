@@ -30,8 +30,8 @@ $role = $_SESSION['role'] ?? '';
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link text-dark fw-bold" href="../admin/banner.php" style="font-size: .8rem;">
-                        <i class="fa fa-images me-2 text-danger"></i> Banner
+                    <a class="nav-link text-dark fw-bold" href="../admin/images.php" style="font-size: .8rem;">
+                        <i class="fa fa-images me-2 text-danger"></i> Images
                     </a>
                 </li>
                 <li class="nav-item mb-3">

@@ -63,33 +63,35 @@ if ($action === 'update_image') {
         $stmt = $pdo->prepare("UPDATE banner SET banner_image=? WHERE id=?");
         $stmt->execute([$image, $id]);
     }
-    header('Location: ../admin/banner.php');
+    header('Location: ../admin/images.php');
     exit;
 }
 
 if ($action === 'insert') {
+    $banner_category = $_POST['banner_category'] ?? '';
     $name_bn = $_POST['banner_name_bn'] ?? '';
     $name_en = $_POST['banner_name_en'] ?? '';
     $image = uploadBannerImage($_FILES['banner_image']);
     if ($name_bn && $name_en && $image) {
-        $stmt = $pdo->prepare("INSERT INTO banner (banner_name_bn, banner_name_en, banner_image) VALUES (?, ?, ?)");
-        $stmt->execute([$name_bn, $name_en, $image]);
-        $_SESSION['success_msg'] = 'Banner added successfully!';
+        $stmt = $pdo->prepare("INSERT INTO banner (banner_category, banner_name_bn, banner_name_en, banner_image) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$banner_category, $name_bn, $name_en, $image]);
+        $_SESSION['success_msg'] = '✅ Image added successfully...!';
     } else {
         if (!$name_bn || !$name_en) {
-            $_SESSION['error_msg'] = '✅ Banner name (Bangla/English) is required.';
+            $_SESSION['error_msg'] = 'Image name (Bangla/English) is required.';
         } elseif (!$image) {
             $_SESSION['error_msg'] = 'Only JPG, JPEG, PNG images are allowed.';
         } else {
             $_SESSION['error_msg'] = 'Failed to add banner due to unknown error.';
         }
     }
-    header('Location: ../admin/banner.php');
+    header('Location: ../admin/images.php');
     exit;
 }
 
 if ($action === 'update') {
     $id = $_POST['id'] ?? '';
+    $banner_category = $_POST['banner_category'] ?? '';
     $name_bn = $_POST['banner_name_bn'] ?? '';
     $name_en = $_POST['banner_name_en'] ?? '';
     $image = !empty($_FILES['banner_image']['name']) ? uploadBannerImage($_FILES['banner_image']) : null;
@@ -101,17 +103,17 @@ if ($action === 'update') {
             if ($oldImg && file_exists($banner_folder . $oldImg)) {
                 unlink($banner_folder . $oldImg);
             }
-            $stmt = $pdo->prepare("UPDATE banner SET banner_name_bn=?, banner_name_en=?, banner_image=? WHERE id=?");
-            $stmt->execute([$name_bn, $name_en, $image, $id]);
+            $stmt = $pdo->prepare("UPDATE banner SET banner_category=?, banner_name_bn=?, banner_name_en=?, banner_image=? WHERE id=?");
+            $stmt->execute([$banner_category, $name_bn, $name_en, $image, $id]);
         } else {
-            $stmt = $pdo->prepare("UPDATE banner SET banner_name_bn=?, banner_name_en=? WHERE id=?");
-            $stmt->execute([$name_bn, $name_en, $id]);
+            $stmt = $pdo->prepare("UPDATE banner SET banner_category=?, banner_name_bn=?, banner_name_en=? WHERE id=?");
+            $stmt->execute([$banner_category, $name_bn, $name_en, $id]);
         }
-        $_SESSION['success_msg'] = '✅ Banner updated successfully..! (সফলভাবে হালনাগাদ করা হলো ..!)';
+        $_SESSION['success_msg'] = '✅ Image updated successfully..! (সফলভাবে হালনাগাদ করা হলো ..!)';
     } else {
-        $_SESSION['error_msg'] = 'Failed to update banner.';
+        $_SESSION['error_msg'] = 'Failed to update image.';
     }
-    header('Location: ../admin/banner.php');
+    header('Location: ../admin/images.php');
     exit;
 }
 
@@ -126,10 +128,10 @@ if ($action === 'delete') {
         }
         $stmt = $pdo->prepare("DELETE FROM banner WHERE id=?");
         $stmt->execute([$id]);
-        $_SESSION['success_msg'] = 'Banner deleted successfully..! (সফলভাবে মুছে ফেলা হলো ..!)';
+        $_SESSION['success_msg'] = '✅ Image deleted successfully..! (সফলভাবে মুছে ফেলা হলো ..!)';
     } else {
-        $_SESSION['error_msg'] = 'Failed to delete banner.';
+        $_SESSION['error_msg'] = 'Failed to delete image.';
     }
-    header('Location: ../admin/banner.php');
+    header('Location: ../admin/images.php');
     exit;
 }

@@ -33,7 +33,6 @@ function uploadLogoImage($file) {
     return null;
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $site_name_bn     = $_POST['site_name_bn'] ?? '';
     $site_name_en     = $_POST['site_name_en'] ?? '';
@@ -51,13 +50,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $smart_bn      = isset($_POST['smart_bn']) ? strip_tags($_POST['smart_bn']) : '';
     $smart_en      = isset($_POST['smart_en']) ? strip_tags($_POST['smart_en']) : '';
 
-    $logo = uploadLogoImage($_FILES['profile_image']);
+    // Check if a new logo is uploaded
+    $new_logo = uploadLogoImage($_FILES['profile_image']);
+    if ($new_logo) {
+        $logo = $new_logo; // Use the new logo
+    } else {
+        // Retrieve the existing logo from the database
+        $stmt = $pdo->query("SELECT logo FROM setup WHERE id=1");
+        $logo = $stmt->fetchColumn(); // Use the existing logo
+    }
+
+    $objectives       = $_POST['objectives'] ?? '';
+    $facebook         = $_POST['facebook'] ?? '';
+    $youtube          = $_POST['youtube'] ?? '';
+    $linkedin         = $_POST['linkedin'] ?? '';
+    $instagram        = $_POST['instagram'] ?? '';
+    $twitter          = $_POST['twitter'] ?? '';
 
     // ✅ Update DB
     $stmt = $pdo->prepare("
         UPDATE setup 
         SET site_name_bn=?, site_name_en=?, registration_no=?, address=?, email=?, phone1=?, phone2=?, 
-            about_text=?, about_text_en=?, slogan_bn=?, slogan_en=?, smart_bn=?, smart_en=?, logo=?
+            about_text=?, about_text_en=?, slogan_bn=?, slogan_en=?, smart_bn=?, smart_en=?, logo=?,
+            objectives=?, facebook=?, youtube=?, linkedin=?, instagram=?, twitter=?
         WHERE id=1
     ");
 
@@ -75,7 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $slogan_en,
         $smart_bn,
         $smart_en,
-        $logo
+        $logo,
+        $objectives,
+        $facebook,
+        $youtube,
+        $linkedin, 
+        $instagram,
+        $twitter
     ]);
 
     $_SESSION['success_msg'] = "✅ Setup updated successfully..! (সফলভাবে হালনাগাদ করা হলো..!)";

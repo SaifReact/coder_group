@@ -2,7 +2,7 @@
 session_start();
 
 include_once __DIR__ . '/../config/config.php';
-$stmt = $pdo->query("SELECT * FROM banner ORDER BY id ASC");
+$stmt = $pdo->query("SELECT id, banner_name_bn, banner_name_en, banner_image, banner_category FROM banner ORDER BY id ASC");
 $banners = $stmt->fetchAll();
 
 include_once __DIR__ . '/../includes/open.php';
@@ -16,11 +16,21 @@ include_once __DIR__ . '/../includes/open.php';
             <div class="container">
                 <div class="card shadow-lg rounded-3 border-0">
                     <div class="card-body p-4">
-                      <h3 class="mb-3 text-primary fw-bold">Banner <span class="text-secondary">( ব্যানার )</span></h3> 
+                      <h3 class="mb-3 text-primary fw-bold">Images <span class="text-secondary">( ছবিসমূহ )</span></h3> 
                       <hr class="mb-4" />
 
                         <form action="../process/banner_process.php" method="post" enctype="multipart/form-data">
                             <div class="row">
+                                <!-- New Select Input -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="banner_category" class="form-label">Category Image</label>
+                                    <select class="form-select" id="banner_category" name="banner_category" required>
+                                        <option value="" disabled selected>Select Category ( নির্বাচন করুন )</option>
+                                        <option value="ban">Banner ( ব্যানার )</option>
+                                        <option value="oth">Other ( অন্যান্য )</option>
+                                    </select>
+                                </div>
+                                <!-- Existing Banner Name Fields -->
                                 <div class="col-md-6 mb-3">
                                     <label for="banner_name_bn" class="form-label">Banner Name (Bangla)</label>
                                     <input type="text" class="form-control" id="banner_name_bn" name="banner_name_bn" required>
@@ -38,7 +48,7 @@ include_once __DIR__ . '/../includes/open.php';
                                 </div>
                                 <div class="col-12 mt-4 text-end">
                                     <button type="submit" name="action" value="insert" class="btn btn-primary btn-lg px-4 shadow-sm">
-                                        Save Banner (ব্যানার সংরক্ষণ করুন)
+                                        Save Image ( ছবি সংরক্ষণ করুন )
                                     </button>
                                 </div>
                             </div>
@@ -71,9 +81,16 @@ include_once __DIR__ . '/../includes/open.php';
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
-                                            <button type="button" class="btn btn-info btn-sm" onclick="editBanner(<?= $banner['id']; ?>, '<?= htmlspecialchars($banner['banner_name_bn'], ENT_QUOTES); ?>', '<?= htmlspecialchars($banner['banner_name_en'], ENT_QUOTES); ?>', '../banner/<?= htmlspecialchars($banner['banner_image']); ?>')">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
+                                            <button type="button" class="btn btn-info btn-sm" 
+                                            onclick="editBanner(
+                                              <?= $banner['id']; ?>, 
+                                              '<?= htmlspecialchars($banner['banner_name_bn'], ENT_QUOTES); ?>', 
+                                              '<?= htmlspecialchars($banner['banner_name_en'], ENT_QUOTES); ?>', 
+                                              '../banner/<?= htmlspecialchars($banner['banner_image']); ?>',
+                                              '<?= htmlspecialchars($banner['banner_category'], ENT_QUOTES); ?>'
+                                            )">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -107,6 +124,15 @@ include_once __DIR__ . '/../includes/open.php';
                         <div class="modal-body">
                           <input type="hidden" name="id" id="edit_id">
                           <div class="row">
+                            <!-- New Select Input -->
+                            <div class="mb-3 col-md-6">
+                              <label for="edit_banner_category" class="form-label">Banner Category</label>
+                              <select class="form-select" id="edit_banner_category" name="banner_category" required>
+                                <option value="" disabled selected>Select Category ( নির্বাচন করুন )</option>
+                                <option value="ban">Banner ( ব্যানার )</option>
+                                <option value="oth">Other ( অন্যান্য )</option>
+                              </select>
+                            </div>
                             <div class="mb-3 col-md-6">
                               <label for="edit_banner_name_bn" class="form-label">Banner Name (Bangla)</label>
                               <input type="text" class="form-control" id="edit_banner_name_bn" name="banner_name_bn" required>
@@ -166,12 +192,25 @@ function previewEditBannerImage(event) {
     img.style.display = 'none';
   }
 }
-function editBanner(id, nameBn, nameEn, imgSrc) {
+function editBanner(id, nameBn, nameEn, imgSrc, category) {
+  // Set the hidden input for the ID
   document.getElementById('edit_id').value = id;
+
+  // Set the Banner Name fields
   document.getElementById('edit_banner_name_bn').value = nameBn;
   document.getElementById('edit_banner_name_en').value = nameEn;
+
+  // Set the Current Image
   document.getElementById('editBannerCurrentImage').src = imgSrc;
+
+  // Set the Category in the Select Input
+  const categorySelect = document.getElementById('edit_banner_category');
+  categorySelect.value = category;
+
+  // Hide the preview for the new image
   document.getElementById('editBannerImagePreview').style.display = 'none';
+
+  // Show the Edit Modal
   var modal = new bootstrap.Modal(document.getElementById('editBannerModal'));
   modal.show();
 }

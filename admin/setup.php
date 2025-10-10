@@ -10,6 +10,7 @@ include_once __DIR__ . '/../config/config.php';
 $stmt = $pdo->query("SELECT * FROM setup LIMIT 1");
 $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
+
 <?php include_once __DIR__ . '/../includes/open.php'; ?>
 
 <!-- Hero Start -->
@@ -100,8 +101,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <?php endif; ?>
                                 </div>
                              </div>
-
-                                </div>
+                        </div>
                                 <div class="col-12 col-md-6 mb-3">
                                     <label for="about_text" class="form-label">About (Bangla)</label>
                                     <textarea class="form-control" id="about_text" name="about_text" rows="5"><?= htmlspecialchars($settings['about_text'] ?? '') ?></textarea>
@@ -110,6 +110,33 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <label for="about_text_en" class="form-label">About (English)</label>
                                     <textarea class="form-control" id="about_text_en" name="about_text_en" rows="5"><?= htmlspecialchars($settings['about_text_en'] ?? '') ?></textarea>
                                 </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="objectives" class="form-label">Objectives</label>
+                                    <textarea class="form-control" id="objectives" name="objectives" rows="5"><?= htmlspecialchars($settings['objectives'] ?? '') ?></textarea>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label for="facebook" class="form-label">Facebook</label>
+                                        <input type="text" class="form-control" id="facebook" name="facebook" value="<?= htmlspecialchars($settings['facebook'] ?? '') ?>">
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label for="youtube" class="form-label">Youtube</label>
+                                        <input type="text" class="form-control" id="youtube" name="youtube" value="<?= htmlspecialchars($settings['youtube'] ?? '') ?>">
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label for="linkedin" class="form-label">Linkedin</label>
+                                        <input type="text" class="form-control" id="linkedin" name="linkedin" value="<?= htmlspecialchars($settings['linkedin'] ?? '') ?>">
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label for="instagram" class="form-label">Instagram</label>
+                                        <input type="text" class="form-control" id="instagram" name="instagram" value="<?= htmlspecialchars($settings['instagram'] ?? '') ?>">
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label for="twitter" class="form-label">Twitter</label>
+                                        <input type="text" class="form-control" id="twitter" name="twitter" value="<?= htmlspecialchars($settings['twitter'] ?? '') ?>">
+                                    </div>
+                                </div>
+
                                 <div class="col-12 mt-4 text-end">
                                     <button type="submit" class="btn btn-primary btn-lg px-4 shadow-sm">
                                         <i class="fa fa-save me-2"></i> Update Settings (সেটিংস হালনাগাদ করুন)
@@ -137,6 +164,11 @@ ClassicEditor.create(document.querySelector('#about_text'), {
 ClassicEditor.create(document.querySelector('#about_text_en'), {
     toolbar: ['bold', 'italic', 'underline', 'link', 'bulletedList', 'numberedList', 'undo', 'redo']
 }).catch(error => {});
+
+ClassicEditor.create(document.querySelector('#objectives'), {
+    toolbar: ['bold', 'italic', 'underline', 'link', 'bulletedList', 'numberedList', 'undo', 'redo']
+}).catch(error => {});
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <?php include '../includes/toast.php'; ?>
