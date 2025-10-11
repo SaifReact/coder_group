@@ -22,15 +22,21 @@
     <!-- Navbar End -->
 
     <!-- Hero Start -->
-    <div class="container-fluid pb-5 hero-header bg-light mb-5">
+    <div class="container-fluid pb-3 hero-header bg-light mb-3">
         <div class="container py-3">
             <?php include_once __DIR__ .'/includes/slider.php'; ?>
         </div>
     </div>
     <!-- Hero End -->
 
-    <!-- About Start -->
+    <!-- About Ticket -->
     <div class="container-fluid py-3">
+        <?php include_once __DIR__ .'/includes/ticket.php'; ?>
+    </div>
+    <!-- About Ticket -->
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
         <div class="container">
             <?php include_once __DIR__ .'/includes/about.php'; ?>
         </div>
@@ -38,7 +44,7 @@
     <!-- About End -->
 
     <!-- Project Start -->
-    <div class="container-fluid bg-light py-3">
+    <div class="container-fluid bg-light py-5">
         <div class="container py-3">
             <?php include_once __DIR__ .'/includes/project.php'; ?>
         </div>
@@ -46,13 +52,13 @@
     <!-- Project End -->
 
     <!-- Service Start -->
-    <div class="container-fluid py-3">
+    <div class="container-fluid py-5">
         <?php include_once __DIR__ .'/includes/service.php'; ?>
     </div>
     <!-- Service End -->
 
     <!-- Team Start -->
-    <div class="container-fluid bg-light py-3">
+    <div class="container-fluid bg-light py-5">
         <?php include_once __DIR__ .'/includes/team.php'; ?>
     </div>
     <!-- Team End -->
