@@ -12,11 +12,25 @@ function generateMemberCode($pdo) {
     return 'CPSS-' . str_pad($next, 5, '0', STR_PAD_LEFT);
 }
 
+
+
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'POST') {
     try {
         $pdo->beginTransaction();
+
+        // Check if NID already exists
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM members_info WHERE nid = ?");
+        $stmt->execute([$_POST['nid']]);
+        $nidExists = $stmt->fetchColumn();
+
+        if ($nidExists > 0) {
+            session_start();
+            $_SESSION['error_msg'] = '❌ এই এনআইডি ইতিমধ্যে নিবন্ধিত (This NID is already registered).';
+            header('Location: ../forms.php');
+            exit;
+        }
 
         // Insert new member
         $member_code = generateMemberCode($pdo);
@@ -28,8 +42,10 @@ if ($method === 'POST') {
         foreach ($fields as $f) {
             $data[$f] = isset($_POST[$f]) ? trim($_POST[$f]) : null;
         }
+
+        // Handle profile image upload
         $profile_image_path = null;
-        if (isset($_FILES['profile_image']) && is_uploaded_file($_FILES['profile_image']['tmp_name'])) {   
+        if (isset($_FILES['profile_image']) && is_uploaded_file($_FILES['profile_image']['tmp_name'])) {
             $allowed_extensions = ['jpg', 'jpeg', 'png'];
             $ext = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
             if (in_array($ext, $allowed_extensions)) {
@@ -83,16 +99,17 @@ if ($method === 'POST') {
         $member_id = $pdo->lastInsertId();
 
         // Insert into member_office
-        $office_fields = ['office_name', 'office_address', 'position'];
+        $office_fields = ['office_name', 'office_address', 'position', 'present_address', 'permanent_address'];
         $office_data = [];
         foreach ($office_fields as $f) {
             $office_data[$f] = isset($_POST[$f]) ? trim($_POST[$f]) : null;
         }
-        $sql_office = "INSERT INTO member_office (member_id, member_code, office_name, office_address, position, created_at) VALUES (?,?,?,?,?,NOW())";
+        $sql_office = "INSERT INTO member_office (member_id, member_code, office_name, office_address, position, created_at, present_address, permanent_address) VALUES (?,?,?,?,?,NOW(),?,?)";
         $stmt_office = $pdo->prepare($sql_office);
         $ok_office = $stmt_office->execute([
             $member_id, $member_code,
-            $office_data['office_name'], $office_data['office_address'], $office_data['position']
+            $office_data['office_name'], $office_data['office_address'], $office_data['position'],
+            $office_data['present_address'], $office_data['permanent_address']
         ]);
         if (!$ok_office) throw new Exception('Insert failed (member_office)');
 
@@ -172,8 +189,8 @@ if ($method === 'POST') {
         $pdo->commit();
 
         session_start();
-        $_SESSION['success_msg'] = 'আপনার আবেদনটি সফলভাবে প্রেরণ করা হয়েছে, অনুমোদনের জন্য অপেক্ষা করুন (Your application has been sent successfully, wait for approval)! Member Code: ' . $member_code . ', Name: ' . $data['name_en'];
-        header('Location: ../member_register.php');
+        $_SESSION['success_msg'] = '✅ আপনার আবেদনটি সফলভাবে প্রেরণ করা হয়েছে, অনুমোদনের জন্য অপেক্ষা করুন সদস্য নং-' . $member_code . ', সদস্য নাম- ' . $data['name_bn'];
+        header('Location: ../form.php');
         exit;
     } catch (Exception $e) {
         $pdo->rollBack();

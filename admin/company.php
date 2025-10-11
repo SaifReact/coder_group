@@ -145,7 +145,6 @@ $companies = $stmt->fetchAll();
         </main>
   </div>
 </div>
-<?php include_once __DIR__ . '/../includes/end.php'; ?>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
 
@@ -214,4 +213,6 @@ function editCompany(id, nameEn, nameBn, aboutCompany, imgSrc) {
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<?php include '../includes/toast.php'; ?>
+<?php include_once __DIR__ . '/../includes/toast.php'; ?>
+
+<?php include_once __DIR__ . '/../includes/end.php'; ?>

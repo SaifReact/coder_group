@@ -29,7 +29,7 @@ if (!empty($_SESSION['success_msg']) || !empty($_SESSION['error_msg'])): ?>
 </div>
 <script>
 document.querySelectorAll('.toast').forEach(function(toastEl) {
-  var toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+  var toast = new bootstrap.Toast(toastEl, { delay: 5000 });
   toast.show();
 });
 </script>

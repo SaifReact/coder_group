@@ -1,4 +1,4 @@
-   <?php include_once __DIR__ . '/includes/open.php'; ?>
+<?php include_once __DIR__ . '/includes/open.php'; ?>
    <!-- Hero Start -->
    <div class="container-fluid pb-3 hero-header bg-light">
      <div class="container">
@@ -47,10 +47,10 @@
                          <option value="বৌদ্ধ">বৌদ্ধ (Buddist)</option>
                        </select>
                      </div>
-                     <div class="mb-2" id="spouse_name_group" style="display:none;">
-                       <label for="spouse_name" class="form-label">স্বামী/স্ত্রীর নাম: <span class="text-secondary small">(Spouse Name)</span>
+                     <div class="mb-2" id="present_address">
+                       <label for="present_address" class="form-label">বর্তমান ঠিকানা: <span class="text-secondary small">(Present Address)</span>
                        </label>
-                       <input type="text" class="form-control" id="spouse_name" name="spouse_name">
+                       <input type="text" class="form-control" id="present_address" name="present_address">
                      </div>
                    </div>
                    <div class="col-md-4">
@@ -80,6 +80,11 @@
                          <option value="Female">মহিলা (Female)</option>
                          <option value="Other">অন্যান্য (Other)</option>
                        </select>
+                     </div>
+                     <div class="mb-2" id="permanent_address">
+                       <label for="permanent_address" class="form-label">স্থায়ী ঠিকানা: <span class="text-secondary small">(Permanent Address)</span>
+                       </label>
+                       <input type="text" class="form-control" id="permanent_address" name="permanent_address">
                      </div>
                    </div>
                    <div class="col-md-4">
@@ -114,6 +119,11 @@
                          <option value="Divorced">তালাকপ্রাপ্ত (Divorced)</option>
                          <option value="Widowed">বিধবা/বিপত্নীক (Widowed)</option>
                        </select>
+                     </div>
+                     <div class="mb-2" id="spouse_name_group" style="display:none;">
+                       <label for="spouse_name" class="form-label">স্বামী/স্ত্রীর নাম: <span class="text-secondary small">(Spouse Name)</span>
+                       </label>
+                       <input type="text" class="form-control" id="spouse_name" name="spouse_name">
                      </div>
                    </div>
                  </div>
@@ -211,4 +221,8 @@
      </div>
    </div>
    </div>
-   <!-- Hero End --> <?php include_once __DIR__ . '/includes/end.php'; ?>
+   <!-- Hero End --> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<?php include_once __DIR__ . '/includes/toast.php'; ?>
+
+<?php include_once __DIR__ . '/includes/end.php'; ?>

@@ -493,5 +493,4 @@
             formError.style.display = 'none';
         }
         });
-
     </script>
