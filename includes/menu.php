@@ -46,10 +46,10 @@ $slogan = $slogan_bn . ($slogan_en ? ' ( ' . $slogan_en . ' )' : '');
                         Logout (লগআউট)
                     </a>
                 <?php else: ?>
-                    <a href="/coder_group/index.php" class="nav-item nav-link active">Home (প্রচ্ছদ)</a>
-                    <a href="/coder_group/form.php" class="nav-item nav-link">Registration (নিবন্ধন)</a>
-                    <a href="/coder_group/login.php" class="nav-item nav-link">Login (লগইন)</a>
-                    <a href="/coder_group/contact.php" class="nav-item nav-link">Contact (যোগাযোগ)</a>
+                    <a href="/coder_group/index.php" class="nav-item nav-link active">প্রচ্ছদ (Home)</a>
+                    <a href="/coder_group/form.php" class="nav-item nav-link">নিবন্ধন (Registration)</a>
+                    <a href="/coder_group/login.php" class="nav-item nav-link">লগইন (Login)</a>
+                    <a href="/coder_group/contact.php" class="nav-item nav-link">যোগাযোগ (Contact)</a>
                 <?php endif; ?>
             </div>
         </div>
