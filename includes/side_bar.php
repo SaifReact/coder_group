@@ -66,6 +66,11 @@ $role = $_SESSION['role'] ?? '';
                     </a>
                 </li>
                 <li class="nav-item mb-3">
+                    <a class="nav-link text-dark fw-bold" href="passbook.php" style="font-size: .8rem;">
+                        <i class="fa fa-receipt me-2 text-info"></i> passbook
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
                     <a class="nav-link text-dark fw-bold" href="password.php" style="font-size: .8rem;">
                         <i class="fa fa-key me-2 text-warning"></i> Password
                     </a>

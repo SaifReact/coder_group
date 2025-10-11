@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Update member_share table and add previous_amount
         $stmt = $pdo->prepare("UPDATE member_share SET for_install = for_install + ?, other_fee = other_fee + ?, for_samity = for_samity + ?, cma = cma + ?, chb = chb + ?, cii = cii + ?, cht = cht + ?, cnf = cnf + ?, created_at = ? WHERE member_id = ? AND member_code = ?");
         $stmt->execute([$for_install, $other_fee, $for_samity, $cma, $chb, $cii, $cht, $cnf, $created_at, $member_id, $member_code]);
-        $_SESSION['success_msg'] = '✅ Payment Successfully..! (সফলভাবে পেমেন্ট করা হলো..!)';
+        $_SESSION['success_msg'] = '✅ সফলভাবে পেমেন্ট করা হয়েছে, অনুমোদনের জন্য অপেক্ষা করুন (Payment successful, please wait for approval)';
         header('Location: ../users/payment.php');
         exit;
     } else {

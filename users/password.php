@@ -31,7 +31,7 @@ include_once __DIR__ . '/../includes/open.php';
                             <div class="col-md-6 mb-3">
                               <label class="form-label">Previous Password <span class="text-secondary small">(আগের পাসওয়ার্ড)</span>
                               </label>
-                               <input type="text" class="form-control" value="<?= htmlspecialchars($_SESSION['re_password']) ?>" readonly>
+                               <input type="text" class="form-control" value="<?= htmlspecialchars($_SESSION['re_password'] ?? ''); ?>" readonly>
                             </div>
                            <div class="col-md-6 mb-3">
                               <label for="password" class="form-label">New Password <span class="text-secondary small">(নতুন পাসওয়ার্ড)</span>
@@ -67,35 +67,10 @@ include_once __DIR__ . '/../includes/open.php';
                </div>
          </main>
   </div>
-  
 </div>
 <!-- Hero End -->
 
-<?php include_once __DIR__ . '/../includes/end.php'; ?>
-      
-<script> 
-document.getElementById('resetForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const form = this;
-    const formData = new FormData(form);
-
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData
-        });
-        const result = await response.json();
-        if (result.success) {
-            showToast(result.message, 'success');
-            form.reset();
-            document.getElementById('retypePasswordSuccess').style.display = 'none';
-        } else {
-            showToast(result.message, 'error');
-        }
-    } catch (err) {
-        showToast('Network error. Please try again.', 'error');
-    }
-});
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<?php include '../includes/toast.php'; ?>
+<?php include_once __DIR__ . '/../includes/toast.php'; ?>
+
+<?php include_once __DIR__ . '/../includes/end.php'; ?>
