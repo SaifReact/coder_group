@@ -4,6 +4,8 @@
 // DB config
 include_once __DIR__ . '/../config/config.php';
 
+session_start();
+
 // Helper: Generate next member_code (CPSS-00001...)
 function generateMemberCode($pdo) {
     $stmt = $pdo->query("SELECT MAX(id) as max_id FROM members_info");
@@ -26,7 +28,6 @@ if ($method === 'POST') {
         $nidExists = $stmt->fetchColumn();
 
         if ($nidExists > 0) {
-            session_start();
             $_SESSION['error_msg'] = '❌ এই এনআইডি ইতিমধ্যে নিবন্ধিত (This NID is already registered).';
             header('Location: ../forms.php');
             exit;
@@ -188,9 +189,8 @@ if ($method === 'POST') {
 
         $pdo->commit();
 
-        session_start();
         $_SESSION['success_msg'] = '✅ আপনার আবেদনটি সফলভাবে প্রেরণ করা হয়েছে, অনুমোদনের জন্য অপেক্ষা করুন সদস্য নং-' . $member_code . ', সদস্য নাম- ' . $data['name_bn'];
-        header('Location: ../form.php');
+        header('Location: ../forms.php');
         exit;
     } catch (Exception $e) {
         $pdo->rollBack();
@@ -210,8 +210,8 @@ if ($method === 'POST') {
                 rmdir($memberDir);
             }
         }
-        http_response_code(500);
-        echo json_encode(['error' => $e->getMessage()]);
+        $_SESSION['error_msg'] = '❌ Registration failed: ' . $e->getMessage();
+        header('Location: ../forms.php');
         exit;
     }
 }
