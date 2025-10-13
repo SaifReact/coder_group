@@ -3,6 +3,7 @@
 .sig{flex:1;text-align:center}
 </style>
 
+<?php include_once __DIR__ . '/config/config.php'; ?>
 <?php include_once __DIR__ . '/includes/open.php'; ?>
    <!-- Hero Start -->
    <div class="container-fluid pb-5 hero-header bg-light">

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['password'] ?? '');
 
     if ($username === '' || $password === '') {
-        $_SESSION['login_error'] = 'Username and password are required.';
+        $_SESSION['error_msg'] = '❌ Username and password are required.';
         header('Location: ../login.php');
         exit;
     }
@@ -35,12 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($user['role'] === 'user') {
             header('Location: ../users/index.php');
         } else {
-            $_SESSION['login_error'] = 'Username not found.';
+            $_SESSION['error_msg'] = '❌ Invalid username or password.';
             header('Location: ../login.php');
         }
         exit;
     } else {
-        $_SESSION['login_error'] = 'Username not found.';
+        $_SESSION['error_msg'] = '❌ Invalid username or password.';
         header('Location: ../login.php');
         exit;
     }

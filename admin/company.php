@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once __DIR__ . '/../config/config.php';
 include_once __DIR__ . '/../includes/open.php';
 
 $stmt = $pdo->query("SELECT * FROM company ORDER BY id ASC");

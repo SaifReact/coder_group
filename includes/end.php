@@ -4,6 +4,8 @@
     </div>
 <!-- Footer End -->
 
+    <?php include_once __DIR__ .'/toast.php'; ?>
+
     <?php include_once __DIR__ .'/jsFooter.php'; ?>
     <?php include_once __DIR__ .'/js.php'; ?>
     <?php include_once __DIR__ .'/password.php'; ?>

@@ -5,6 +5,8 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+include_once __DIR__ . '/../config/config.php';
+
 include_once __DIR__ . '/../includes/open.php';
 ?>
 

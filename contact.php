@@ -1,3 +1,4 @@
+   <?php include_once __DIR__ . '/config/config.php'; ?>
    <?php include_once __DIR__ . '/includes/open.php'; ?>
    <!-- Hero Start -->
    <div class="container-fluid pb-3 hero-header bg-light">

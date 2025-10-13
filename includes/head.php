@@ -6,7 +6,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="/coder_group/assets/img/favicon.ico" rel="icon">
+    <link href="<?php echo BASE_URL; ?>assets/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,13 +18,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="/coder_group/assets/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="/coder_group/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="/coder_group/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="/coder_group/assets/css/style.css" rel="stylesheet">
-    <link href="/coder_group/assets/css/styles.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/css/style.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/css/styles.css" rel="stylesheet">
 </head>

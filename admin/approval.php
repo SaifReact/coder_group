@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-include_once __DIR__ . '/../includes/open.php';
-
 include_once __DIR__ . '/../config/config.php';
+
+include_once __DIR__ . '/../includes/open.php';
 
 // Handle status update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'], $_POST['status'])) {

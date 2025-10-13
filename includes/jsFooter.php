@@ -5,10 +5,10 @@
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/coder_group/assets/lib/wow/wow.min.js"></script>
-    <script src="/coder_group/assets/lib/easing/easing.min.js"></script>
-    <script src="/coder_group/assets/lib/waypoints/waypoints.min.js"></script>
-    <script src="/coder_group/assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/lib/wow/wow.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/lib/easing/easing.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/lib/waypoints/waypoints.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="/coder_group/assets/js/main.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/js/main.js"></script>

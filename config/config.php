@@ -3,8 +3,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+define('BASE_URL', '/coder_group/');
+
 $host = 'localhost';
-$db   = 'samity_db';
+$db   = 'cpsslcom_samity';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';

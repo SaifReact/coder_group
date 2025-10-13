@@ -6,7 +6,7 @@ if (!empty($_SESSION['success_msg']) || !empty($_SESSION['error_msg'])): ?>
 <div aria-live="polite" aria-atomic="true" class="position-relative">
   <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
     <?php if (!empty($_SESSION['success_msg'])): ?>
-      <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="successToast" class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
           <div class="toast-body">
             <?= htmlspecialchars($_SESSION['success_msg']) ?>
@@ -16,7 +16,7 @@ if (!empty($_SESSION['success_msg']) || !empty($_SESSION['error_msg'])): ?>
       </div>
     <?php unset($_SESSION['success_msg']); endif; ?>
     <?php if (!empty($_SESSION['error_msg'])): ?>
-      <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="errorToast" class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
           <div class="toast-body">
             <?= htmlspecialchars($_SESSION['error_msg']) ?>
@@ -28,9 +28,14 @@ if (!empty($_SESSION['success_msg']) || !empty($_SESSION['error_msg'])): ?>
   </div>
 </div>
 <script>
-document.querySelectorAll('.toast').forEach(function(toastEl) {
-  var toast = new bootstrap.Toast(toastEl, { delay: 5000 });
-  toast.show();
+document.addEventListener('DOMContentLoaded', function() {
+  // Ensure Bootstrap is loaded
+  if (typeof bootstrap !== 'undefined' && bootstrap.Toast) {
+    document.querySelectorAll('.toast').forEach(function(toastEl) {
+      var toast = new bootstrap.Toast(toastEl, { delay: 5000, autohide: true });
+      toast.show();
+    });
+  }
 });
 </script>
 <?php endif; ?>
