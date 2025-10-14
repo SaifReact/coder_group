@@ -15,7 +15,7 @@ $slogan = $slogan_bn . ($slogan_en ? ' ( ' . $slogan_en . ' )' : '');
 ?>
     <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
         <div class="container-fluid">
-        <a href="/coder_group/index.php" class="navbar-brand">
+        <a href="index.php" class="navbar-brand">
             <span style="
                 display: inline-block;
                 font-family: 'Poppins', Arial, sans-serif;
@@ -46,10 +46,10 @@ $slogan = $slogan_bn . ($slogan_en ? ' ( ' . $slogan_en . ' )' : '');
                         Logout (লগআউট)
                     </a>
                 <?php else: ?>
-                    <a href="/coder_group/index.php" class="nav-item nav-link active">প্রচ্ছদ (Home)</a>
-                    <a href="/coder_group/form.php" class="nav-item nav-link">নিবন্ধন (Registration)</a>
-                    <a href="/coder_group/login.php" class="nav-item nav-link">লগইন (Login)</a>
-                    <a href="/coder_group/contact.php" class="nav-item nav-link">যোগাযোগ (Contact)</a>
+                    <a href="index.php" class="nav-item nav-link active">প্রচ্ছদ (Home)</a>
+                    <a href="form.php" class="nav-item nav-link">নিবন্ধন (Registration)</a>
+                    <a href="login.php" class="nav-item nav-link">লগইন (Login)</a>
+                    <a href="contact.php" class="nav-item nav-link">যোগাযোগ (Contact)</a>
                 <?php endif; ?>
             </div>
         </div>

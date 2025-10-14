@@ -1,10 +1,10 @@
 <?php
-// Full CRUD for members_info using PDO (Refactored & Fixed)
-
 // DB config
 include_once __DIR__ . '/../config/config.php';
 
 session_start();
+
+$method = $_SERVER['REQUEST_METHOD'];
 
 // Helper: Generate next member_code (CPSS-00001...)
 function generateMemberCode($pdo) {
@@ -14,9 +14,43 @@ function generateMemberCode($pdo) {
     return 'CPSS-' . str_pad($next, 5, '0', STR_PAD_LEFT);
 }
 
+// Helper function to send SMS
+function sms_send($mobile, $message) {
+    $sms_api_url = "http://bulksmsbd.net/api/smsapi";
+    $api_key = "B5NrU3gcYDTzS4AdGGIo";
+    $sender_id = "8809648903446";
 
+    $data = [
+        'api_key' => $api_key,
+        'type' => 'text',
+        'number' => $mobile,
+        'senderid' => $sender_id,
+        'message' => $message,
+    ];
 
-$method = $_SERVER['REQUEST_METHOD'];
+    error_log("SMS Data: " . print_r($data, true));
+
+    $url = $sms_api_url . '?' . http_build_query($data);
+    error_log("Generated SMS URL: $url");
+
+    error_log("Sending SMS to: $mobile with message: $message");
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $response = curl_exec($ch);
+
+    if ($response === false) {
+        $error = curl_error($ch);
+        curl_close($ch);
+        return false;
+    }
+
+    curl_close($ch);
+    error_log("SMS Response: $response");
+    return $response;
+}
 
 if ($method === 'POST') {
     try {
@@ -27,9 +61,11 @@ if ($method === 'POST') {
         $stmt->execute([$_POST['nid']]);
         $nidExists = $stmt->fetchColumn();
 
+        $agreeVal = base64_encode('1');
+
         if ($nidExists > 0) {
-            $_SESSION['error_msg'] = '❌ এই এনআইডি ইতিমধ্যে নিবন্ধিত (This NID is already registered).';
-            header('Location: ../forms.php');
+            $_SESSION['error_msg'] = '❌ এই জাতীয় পরিচয়পত্র/জন্ম নিবন্ধন নং মধ্যে নিবন্ধিত (This NID/BRN No. is already registered)'; 
+            header('Location: ../forms.php?agreed=' . $agreeVal);
             exit;
         }
 
@@ -37,9 +73,11 @@ if ($method === 'POST') {
         $member_code = generateMemberCode($pdo);
         $fields = [
             'name_bn', 'name_en', 'father_name', 'mother_name', 'nid', 'dob', 'religion', 'marital_status', 'spouse_name',
-            'mobile', 'gender', 'education', 'agreed_rules'
+            'mobile', 'gender', 'education', 'agreed_rules', 'ref_no'
         ];
+        
         $data = [];
+        
         foreach ($fields as $f) {
             $data[$f] = isset($_POST[$f]) ? trim($_POST[$f]) : null;
         }
@@ -74,9 +112,12 @@ if ($method === 'POST') {
                 throw new Exception('Invalid file extension.');
             }
         }
+        
+        $ref_no = !empty($data['ref_no']) ? $data['ref_no'] : $member_code;
+        $agreeValue = !empty($data['agreed_rules']) ? $data['agreed_rules'] : 1;
 
         // Insert into members_info
-        $sql = "INSERT INTO members_info (member_code, name_bn, name_en, father_name, mother_name, nid, dob, religion, marital_status, spouse_name, mobile, gender, education, agreed_rules, profile_image, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())";
+        $sql = "INSERT INTO members_info (member_code, name_bn, name_en, father_name, mother_name, nid, dob, religion, marital_status, spouse_name, mobile, gender, education, agreed_rules, profile_image, created_at, ref_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?)";
         $stmt = $pdo->prepare($sql);
         $ok = $stmt->execute([
             $member_code,
@@ -92,8 +133,9 @@ if ($method === 'POST') {
             $data['mobile'],
             $data['gender'],
             $data['education'],
-            $data['agreed_rules'],
-            $profile_image_path
+            $agreeValue,
+            $profile_image_path,
+            $ref_no
         ]);
         if (!$ok) throw new Exception('Insert failed (members_info)');
 
@@ -160,7 +202,9 @@ if ($method === 'POST') {
                 $nominee_percents[$i] ?? '',
                 $nominee_image_path
             ]);
-            if (!$ok_nominee) throw new Exception('Nominee insert failed');
+            
+            if (!$ok_nominee) throw new Exception('Nominee Insert Failed');
+            
         }
 
         // Insert into member_share
@@ -174,9 +218,9 @@ if ($method === 'POST') {
             $_POST['passbook_fee'] ?? null,
             $_POST['softuses_fee'] ?? null
         ]);
-        if (!$ok_share) throw new Exception('Share insert failed');
+        
+        if (!$ok_share) throw new Exception('Share Insert Failed');
 
-        // Insert into user_login
         $username = trim($_POST['username'] ?? '');
         $password = md5(trim($_POST['password'] ?? ''));
         $re_password = trim($_POST['retype_password'] ?? '');
@@ -185,154 +229,54 @@ if ($method === 'POST') {
         $ok_user = $stmt_user->execute([
             $member_id, $member_code, $username, $password, $re_password, 'user', 'I'
         ]);
-        if (!$ok_user) throw new Exception('User insert failed');
+        
+        if (!$ok_user) throw new Exception('User Insert Failed');
 
         $pdo->commit();
 
-        $_SESSION['success_msg'] = '✅ আপনার আবেদনটি সফলভাবে প্রেরণ করা হয়েছে, অনুমোদনের জন্য অপেক্ষা করুন সদস্য নং-' . $member_code . ', সদস্য নাম- ' . $data['name_bn'];
-        header('Location: ../forms.php');
+        $success_msg = '✅ আপনার আবেদনটি সফলভাবে প্রেরণ করা হয়েছে, অনুমোদনের জন্য অপেক্ষা করুন সদস্য নং-' . $member_code . ', সদস্য নাম- ' . $data['name_bn'];
+        
+        if ($data['mobile']) {
+            $sms_response = sms_send($data['mobile'], $success_msg);
+            if ($sms_response === false) {
+                $sms_error_msg = '❌ SMS পাঠানো যায়নি।';
+            } else {
+                $sms_result = json_decode($sms_response, true);
+                if (isset($sms_result['error']) && $sms_result['error'] != 0) {
+                    $sms_error_msg = '❌ SMS পাঠানো যায়নি: ' . ($sms_result['message'] ?? 'Unknown error');
+                } else {
+                    $sms_success_msg = '✅ SMS সফলভাবে পাঠানো হয়েছে।';
+                    $success_msg .= ' ' . $sms_success_msg;
+                }
+            }    
+        }
+
+        if (isset($sms_error_msg)) {
+            $success_msg .= ' ' . $sms_error_msg;
+        }
+
+        $_SESSION['success_msg'] = $success_msg;
+        header('Location: ../form.php');
         exit;
     } catch (Exception $e) {
         $pdo->rollBack();
-        // Clean up uploaded images if any
         if (isset($member_code)) {
             $userImgDir = dirname(__DIR__) . '/user_images';
             $memberDir = $userImgDir . '/member_' . $member_code;
             if (is_dir($memberDir)) {
-                // Remove all files in the member directory
                 $files = glob($memberDir . '/*');
                 foreach ($files as $file) {
                     if (is_file($file)) {
                         unlink($file);
                     }
                 }
-                // Remove the member directory itself
                 rmdir($memberDir);
             }
         }
-        $_SESSION['error_msg'] = '❌ Registration failed: ' . $e->getMessage();
+        $_SESSION['error_msg'] = '❌ দুঃখিত, কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।' . $e->getMessage();
         header('Location: ../forms.php');
         exit;
     }
-}
-
-if ($method === 'GET') {
-    // Fetch member(s)
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        $stmt = $pdo->prepare("SELECT * FROM members_info WHERE id = ?");
-        $stmt->execute([$id]);
-        $member = $stmt->fetch();
-
-        $stmt_office = $pdo->prepare("SELECT * FROM member_office WHERE member_id = ?");
-        $stmt_office->execute([$id]);
-        $office = $stmt_office->fetch();
-
-        $stmt_nominee = $pdo->prepare("SELECT * FROM member_nominee WHERE member_id = ?");
-        $stmt_nominee->execute([$id]);
-        $nominees = $stmt_nominee->fetchAll();
-
-        echo json_encode(['member' => $member, 'office' => $office, 'nominees' => $nominees]);
-    } else {
-        $stmt = $pdo->query("SELECT * FROM members_info ORDER BY id DESC");
-        $members = $stmt->fetchAll();
-        foreach ($members as &$member) {
-            $id = $member['id'];
-            $stmt_office = $pdo->prepare("SELECT * FROM member_office WHERE member_id = ?");
-            $stmt_office->execute([$id]);
-            $member['office'] = $stmt_office->fetch();
-
-            $stmt_nominee = $pdo->prepare("SELECT * FROM member_nominee WHERE member_id = ?");
-            $stmt_nominee->execute([$id]);
-            $member['nominees'] = $stmt_nominee->fetchAll();
-        }
-        echo json_encode($members);
-    }
-    exit;
-}
-
-if ($method === 'PUT' || $method === 'PATCH') {
-    parse_str(file_get_contents('php://input'), $_PUT);
-    if (!isset($_GET['id'])) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Missing id']);
-        exit;
-    }
-    $id = $_GET['id'];
-
-    // Update members_info
-    $fields = ['name_bn', 'name_en', 'father_name', 'mother_name', 'nid', 'dob', 'religion', 'marital_status', 'spouse_name', 'mobile', 'gender', 'education'];
-    $set = [];
-    $params = [];
-    foreach ($fields as $f) {
-        if (isset($_PUT[$f])) {
-            $set[] = "$f = ?";
-            $params[] = $_PUT[$f];
-        }
-    }
-    if ($set) {
-        $params[] = $id;
-        $sql = "UPDATE members_info SET " . implode(',', $set) . " WHERE id = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($params);
-    }
-
-    // Update member_office
-    $office_fields = ['office_name', 'office_address', 'position'];
-    $office_set = [];
-    $office_params = [];
-    foreach ($office_fields as $f) {
-        if (isset($_PUT[$f])) {
-            $office_set[] = "$f = ?";
-            $office_params[] = $_PUT[$f];
-        }
-    }
-    if ($office_set) {
-        $office_params[] = $id;
-        $sql_office = "UPDATE member_office SET " . implode(',', $office_set) . " WHERE member_id = ?";
-        $stmt_office = $pdo->prepare($sql_office);
-        $stmt_office->execute($office_params);
-    }
-
-    // Update nominees (delete all and re-insert)
-    if (isset($_PUT['nominee_name'])) {
-        $pdo->prepare("DELETE FROM member_nominee WHERE member_id = ?")->execute([$id]);
-        $nominee_names = $_PUT['nominee_name'] ?? [];
-        $nominee_relations = $_PUT['nominee_relation'] ?? [];
-        $nominee_nids = $_PUT['nominee_nid'] ?? [];
-        $nominee_dobs = $_PUT['nominee_dob'] ?? [];
-        $nominee_percents = $_PUT['nominee_percent'] ?? [];
-        for ($i = 0; $i < count($nominee_names); $i++) {
-            $sql_nominee = "INSERT INTO member_nominee (member_id, member_code, name, relation, nid, dob, percentage) VALUES (?,?,?,?,?,?,?)";
-            $stmt_nominee = $pdo->prepare($sql_nominee);
-            $stmt_nominee->execute([
-                $id,
-                $_PUT['member_code'] ?? '',
-                $nominee_names[$i] ?? '',
-                $nominee_relations[$i] ?? '',
-                $nominee_nids[$i] ?? '',
-                $nominee_dobs[$i] ?? '',
-                $nominee_percents[$i] ?? ''
-            ]);
-        }
-    }
-    echo json_encode(['success' => true]);
-    exit;
-}
-
-if ($method === 'DELETE') {
-    if (!isset($_GET['id'])) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Missing id']);
-        exit;
-    }
-    $id = $_GET['id'];
-    $pdo->prepare("DELETE FROM member_nominee WHERE member_id = ?")->execute([$id]);
-    $pdo->prepare("DELETE FROM member_office WHERE member_id = ?")->execute([$id]);
-    $stmt = $pdo->prepare("DELETE FROM members_info WHERE id = ?");
-    $ok = $stmt->execute([$id]);
-    echo json_encode(['success' => $ok]);
-    exit;
 }
 
 http_response_code(405);

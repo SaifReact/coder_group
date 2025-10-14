@@ -28,7 +28,7 @@ if (!empty($_SESSION['success_msg']) || !empty($_SESSION['error_msg'])): ?>
   </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
   // Ensure Bootstrap is loaded
   if (typeof bootstrap !== 'undefined' && bootstrap.Toast) {
     document.querySelectorAll('.toast').forEach(function(toastEl) {

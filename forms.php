@@ -111,6 +111,11 @@
                        <input type="text" class="form-control" id="share" name="share" required>
                      </div>
                      <div class="mb-2">
+                       <label for="ref_no" class="form-label">রেফঃ নং: <span class="text-secondary small">(Ref. No)</span>
+                       </label>
+                       <input type="text" class="form-control" id="ref_no" name="ref_no">
+                     </div>
+                     <div class="mb-2">
                        <label for="marital_status" class="form-label">বৈবাহিক অবস্থা: <span class="text-secondary small">(Marital Status)</span>
                        </label>
                        <select class="form-select" id="marital_status" name="marital_status" required>
