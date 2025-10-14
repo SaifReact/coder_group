@@ -234,7 +234,7 @@ if ($method === 'POST') {
 
         $pdo->commit();
 
-        $success_msg = '✅ আপনার আবেদনটি সফলভাবে প্রেরণ করা হয়েছে, অনুমোদনের জন্য অপেক্ষা করুন সদস্য নং-' . $member_code . ', সদস্য নাম- ' . $data['name_bn'];
+        $success_msg = '✅ আপনার আবেদনটি সফলভাবে প্রেরণ করা হয়েছে, অনুমোদনের জন্য অপেক্ষা করুন অথবা ওয়েবসাইট এর মোবাইল নম্বরে।  আপনার সদস্য নং-' . $member_code . ', সদস্য নাম- ' . $data['name_bn'] . '\n ';
         
         if ($data['mobile']) {
             $sms_response = sms_send($data['mobile'], $success_msg);
